@@ -60,6 +60,8 @@ const warning = document.getElementById("warning");
 const header = document.getElementById("header__id");
 const video = document.getElementById("background__video");
 const container = document.getElementById("cont");
+const countdown = document.getElementById("countdown__id");
+const difficulty = document.getElementById("difficulty");
 const check_checkbox = () => {
     if (check.checked) {
         boton_play.disabled = false;
@@ -74,9 +76,24 @@ const start_game = () => {
     start.style.display = "none";
     video.pause();
     container.style.backgroundColor = "green";
-    container.style.height="890px"
+    container.style.height="890px";
 }
+const choose__difficulty=(event)=> {
+     console.log(event.target.nodeName);
+    if (event.target.nodeName=="INPUT") {
+        countdown__start
+        console.log("holaaa")
+    }
+}
+let timer = 3
+const countdown__start=() => {
 
+    countdown.textContent=timer
+    timer--;
 
+    }
+
+let count = setInterval(1000, countdown__start);
 check.addEventListener("change", check_checkbox)
 boton_play.addEventListener("click", start_game)
+difficulty.addEventListener("click", choose__difficulty)
