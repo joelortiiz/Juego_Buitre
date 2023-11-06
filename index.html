@@ -40,15 +40,29 @@
 
         <h3 class="h3" id="game__time">
             Escoge una dificultad 
+            <img src="./assets/images/help.png" id="help" class="img__help" alt="interrogation">
+         
         </h3>
+           
         <div class="container__difficulty" id="difficulty">
             <form class="game__difficulty">
+              <div class="difficulty__option1">
                 <input type="radio" class="time__radio" name="difficulty">
-                <span class="time__text"> Fácil</span>
+                <span class="time__text1"> Fácil</span>
+              </div>
+              <div class="difficulty__option2">
                 <input type="radio" class="time__radio" name="difficulty">
-                <span class="time__text"> Dificil</span>
-            </form>
+                <span class="time__text2"> Dificil</span>
+           
+              </div>
+             </form>
+             <footer class="difficulty__footer displayNone" id="footer__difficulty">
+             * Recuerda que la dificultad del juego determina la <br> velocidad y reflejos
+              que tendrá la máquina.
+             </footer>
         </div>
+        <button id="button__start" class="button2">Empezar</button>
+     
         <div class="countdown" id="countdown__id">
             
         </div>

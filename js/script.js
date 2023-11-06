@@ -54,7 +54,8 @@ let cartas = [
     "queen_of_spades"
 ]
 const start = document.getElementById("start");
-const boton_play = document.getElementById("button__play");
+const button_play = document.getElementById("button__play");
+const buttoon_start = document.getElementById("button__start");
 const check = document.getElementById("checkbox");
 const warning = document.getElementById("warning");
 const header = document.getElementById("header__id");
@@ -62,6 +63,9 @@ const video = document.getElementById("background__video");
 const container = document.getElementById("cont");
 const countdown = document.getElementById("countdown__id");
 const difficulty = document.getElementById("difficulty");
+const help = document.getElementById("help");
+let help_text = document.getElementById("footer__difficulty");
+
 const check_checkbox = () => {
     if (check.checked) {
         boton_play.disabled = false;
@@ -76,24 +80,30 @@ const start_game = () => {
     start.style.display = "none";
     video.pause();
     container.style.backgroundColor = "green";
-    container.style.height="890px";
+    container.style.height = "950px";
+    container.style.justifyContent = "start";
+    container.style.borderRadius="1%";
 }
-const choose__difficulty=(event)=> {
-     console.log(event.target.nodeName);
-    if (event.target.nodeName=="INPUT") {
-        countdown__start
-        console.log("holaaa")
+const choose__difficulty = (event) => {
+    console.log(difficulty.textContent);
+    if (event.target.nodeName == "INPUT") {
+
+        let count = setInterval(countdown__start, 1000);
+        difficulty.style.display="noe";
     }
 }
 let timer = 3
-const countdown__start=() => {
+const countdown__start = () => {
 
-    countdown.textContent=timer
+    countdown.textContent = timer
     timer--;
 
-    }
-
-let count = setInterval(1000, countdown__start);
+}
+const showHelp=()=> {
+    help_text.classList.toggle("displayNone")
+    help_text.style.opacity="1";
+}
 check.addEventListener("change", check_checkbox)
-boton_play.addEventListener("click", start_game)
-difficulty.addEventListener("click", choose__difficulty)
+button_play.addEventListener("click", start_game)
+buttoon_start.addEventListener("click", choose__difficulty)
+help.addEventListener("click", showHelp)

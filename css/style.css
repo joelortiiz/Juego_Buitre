@@ -15,6 +15,10 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.247);
+  
+}
+.displayNone {
+  display: none;
 }
 .header {
   text-align: center;
@@ -86,6 +90,65 @@ body {
   background-color: green;
   color: yellow;
 }
+.h3 {
+  color: yellow;
+  font-size: 4rem;
+}
+.container__difficulty {
+  color: white; 
+}
+.game__difficulty {
+  display: flex;
+  justify-content: space-evenly;
+}
+.time__radio {
+  appearance: none;
+  width: 40px; /* Ancho del botón de radio */
+  height: 40px; /* Altura del botón de radio */
+  border-radius: 50%; /* Hacer un círculo */
+  border: 3px solid rgb(255, 255, 255); /* Borde del botón de radio */
+
+
+}
+.time__radio:checked {
+  background-color: rgb(251, 255, 0); /* Color del botón seleccionado */
+  
+}
+.time__text1 {
+  font-size: 3rem;
+  color: rgb(74, 204, 255);
+}
+.time__text2 {
+  font-size: 3rem;
+  color: rgb(255, 0, 0);
+}
+.difficulty__option1 {
+  transition: all 0.3s ease;
+}
+.difficulty__option1:hover {
+  border-bottom: 8px solid rgb(115, 235, 75);
+
+}
+.difficulty__option2 {
+  transition: all 0.3s ease;
+}
+.difficulty__option2:hover {
+  border-bottom: 15px solid rgb(39, 0, 0);
+  color: white;
+}
+.img__help {
+  width: 40px;
+  background-color: rgba(255, 255, 255, 0.902);
+  border-radius: 50%;
+  padding: 0.2rem;
+}
+.difficulty__footer {
+  text-align: center;
+  transition: opacity 0.5s ease; 
+  padding: 2rem;
+
+}
 .game {
-    display: non;
+    /* display: non;
+    transition: all 8s ease; */
 }
