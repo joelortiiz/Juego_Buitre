@@ -1,12 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/fonts.css" />
+  </head>
+  <body>
+    <div class="container" id="cont">
+      <header class="header" id="header__id">
+        <h1 class="title">El Buitre</h1>
+        <footer class="title__footer">
+          ¿Listo para <span class="title__footer__span">cazar</span>, o para ser
+          <span class="title__footer__span">cazado</span>?
+        </footer>
+      </header>
+      <div class="video__container">
+        <video id="background__video" autoplay loop muted>
+          <source src="./assets/videos/fondo__inicio.mov" type="video/mp4" />
+          <!-- Otros formatos de video si lo deseas -->
+        </video>
+        <!-- Aquí puede ir tu contenido HTML -->
+      </div>
+      <section id="start">
+      <div class="container__checkbox">
+        <div>
+          <input type="checkbox" class="check" id="checkbox" checked /> Tengo
+          más de 18 años
+        </div>
+        
+        <p class="checkbox__warning" id="warning">
+          *Debes ser mayor de edad para poder jugar
+        </p>
+      </div>
+      <button id="button__play" class="button1">Jugar</button>
+      </section>
+      <section class="game">
+
+        <h3 class="h3" id="game__time">
+            Escoge una dificultad 
+        </h3>
+        <div class="container__difficulty">
+            <form class="game__difficulty">
+                <input type="radio" class="config-size__radio" name="ayuda" value="sin">
+                <span class="config-help__text"> Fácil</span>
+                <input type="radio" class="config-size__radio" name="ayuda" value="sin">
+                <span class="config-help__text"> Dificil</span>
+             
+            </form>
+        </div>
+        
+
+      </section>
+    </div>
     <script src="./js/script.js"></script>
-</body>
+  </body>
 </html>
