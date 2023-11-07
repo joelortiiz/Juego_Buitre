@@ -67,12 +67,42 @@ body {
   min-height: 100%;
   width: auto;
   height: auto;
-  z-index: -1000;
+  z-index: -2;
+}
+.user_name {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: poker;
+}
+.user_name:focus {
+  border-color: #007bff; /* Cambia el borde al enfocar */
+  box-shadow: 0 0 5px #007bff; /* Agrega una sombra al enfocar */
 }
 #start {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+.animation__start {
+  background-color: green;
+  animation-name: start_game;
+	animation-duration: 6s;
+	animation-fill-mode: forwards;
+}
+@keyframes start_game {
+  0% {
+    translate: -2000px;
+  }
+  50% {
+    opacity: 1;
+    translate: 0px;
+  }
+  100% {
+    opacity: 1;
+    translate: 0px;
+  }
 }
 .button1 {
   margin: 4rem;

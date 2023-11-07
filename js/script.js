@@ -1,4 +1,4 @@
-let cartas = [
+let baraja1 = [
     "2_of_clubs",
     "2_of_diamonds",
     "2_of_hearts",
@@ -53,6 +53,7 @@ let cartas = [
     "queen_of_hearts",
     "queen_of_spades"
 ]
+let baraja2 = baraja1;
 const start = document.getElementById("start");
 const button_play = document.getElementById("button__play");
 const buttoon_start = document.getElementById("button__start");
@@ -79,7 +80,9 @@ const start_game = () => {
 
     start.style.display = "none";
     video.pause();
-    container.style.backgroundColor = "green";
+   // container.style.backgroundColor = "green";
+    container.classList.add = "animation__start";
+
     container.style.height = "950px";
     container.style.justifyContent = "start";
     container.style.borderRadius="1%";
