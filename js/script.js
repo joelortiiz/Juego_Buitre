@@ -54,6 +54,12 @@ let baraja1 = [
     "queen_of_spades"
 ]
 let baraja2 = baraja1;
+let avatars = [
+    "cartas-de-poquer.png",
+    "jugando-a-las-cartas.png",
+    "mano.png",
+    "poker.png"
+]
 const start = document.getElementById("start");
 const button_play = document.getElementById("button__play");
 const buttoon_start = document.getElementById("button__start");
@@ -72,6 +78,8 @@ let settings = document.getElementById("settings");
 let user = document.getElementById("user");
 let user_layer = document.getElementById("user_layer");
 let user_container = document.getElementById("container__user");
+let avatarDiv = document.getElementById("avatar");
+
 const check_checkbox = () => {
     if (check.checked) {
         console.log("check")
@@ -88,15 +96,15 @@ const start_game = () => {
    // settings.classList.add("animation__settings") 
     start.style.display = "none";
     video.pause();
-    container.style.backgroundColor = "green";
-    container.style.height = "950px";
-    container.style.justifyContent = "start";
-    container.style.borderRadius = "1%";
+    settings.style.marginBottom="0px";
+    container.style.backgroundColor = "rgba(0, 128, 0, 0.97)";
+    user_container.nextElementSibling.style.display="none"
+    chargeAvatars()
 }
 const choose__difficulty = (event) => {
     console.log(difficulty.textContent);
+    console.log(event.target.nodeName);
     if (event.target.nodeName == "INPUT") {
-
         let count = setInterval(countdown__start, 1000);
         difficulty.style.display = "none";
     }
@@ -124,8 +132,28 @@ const saveUser=()=> {
         user_layer.classList.remove("displayNone")
     }
 }
+const chargeAvatars = () => {
+    for(let i = 0; i<4; i++){
+        let random = Math.floor(Math.random()*avatars.length)
+        let randomAvatar = avatars.splice(random,1)[0];
+        let avatar = document.createElement("IMG");
+        avatar.src = "./assets/images/avatares/"+randomAvatar;
+        avatar.className = "avatar";
+        avatarDiv.appendChild(avatar)
+    }
+}
+const chooseAvatar=(event) => {
+    if(event.target.nodeName==="IMG"){
+        console.log(event.target.src)
+        console.log(event.target.src.lastIndexOf(".") + 1)
+     //   user_layer.nextElementSibling.src = "./assets/images/avatares/"+event.target.src.lastIndexOf("/") + 1
+   //     user_layer.nextElementSibling.classList.remove("displayNone")
+    }
+}
+
 check.addEventListener("change", check_checkbox)
 button_play.addEventListener("click", start_game)
 buttoon_start.addEventListener("click", choose__difficulty)
 help.addEventListener("click", showHelp)
 button_user.addEventListener("click", saveUser)
+avatar.addEventListener("click", chooseAvatar)
