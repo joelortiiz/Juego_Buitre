@@ -4,6 +4,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-shadow: black 1px 3px;
 }
 .container {
   display: flex;
@@ -27,10 +28,10 @@ body {
 .title {
   color: white;
   font-size: 4rem;
-  text-decoration: wavy;
 }
 .title__footer {
   color: white;
+  
 }
 .title__footer__span {
   color: red;
@@ -78,6 +79,10 @@ body {
   align-items: center; 
   justify-content: space-around;
   border: 1px solid;
+}
+.userStyle {
+  color: white;
+  text-shadow: black 2px 2px;
 }
 .user_name {
   padding: 10px;

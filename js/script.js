@@ -113,9 +113,13 @@ const showHelp = () => {
 let usernameExists = false;
 const saveUser=()=> {
     if(username.value==""){
-        username.classList.add="error";
+        console.log("vacio")
+        username.style.border="2px solid red";
         usernameExists = false;
+        user_layer.classList.add("displayNone")
+    
     }else {
+        username.style.border="0px";
         user.textContent = username.value
         user_layer.classList.remove("displayNone")
     }
