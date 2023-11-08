@@ -80,26 +80,39 @@ let user_layer = document.getElementById("user_layer");
 let user_container = document.getElementById("container__user");
 let avatarDiv = document.getElementById("avatar");
 
+let checkEdad=true;
 const check_checkbox = () => {
     if (check.checked) {
         console.log("check")
-        button__play.disabled = false;
+        
+        button_play.style.backgroundColor="green";
+    
+       // button__play.disabled = false;
+       checkEdad=true;
         warning.style.display = "none";
     } else {
         console.log("no check")
-        button__play.disabled = true;
+       // button__play.disabled = true;
         warning.style.display = "block";
+        checkEdad=false;
+
     }
 }
 const start_game = () => {
-    settings.classList.remove("displayNone")
-   // settings.classList.add("animation__settings") 
-    start.style.display = "none";
-    video.pause();
-    settings.style.marginBottom="0px";
-    container.style.backgroundColor = "rgba(0, 128, 0, 0.97)";
-    user_container.nextElementSibling.style.display="none"
-    chargeAvatars()
+    console.log(checkEdad)
+    if (checkEdad==true) {
+        settings.classList.remove("displayNone")
+        // settings.classList.add("animation__settings") 
+        start.style.display = "none";
+        video.playbackRate = 0.8;
+        settings.style.marginBottom = "0px";
+        container.style.backgroundColor = "rgba(0, 128, 0, 0.97)";
+        user_container.nextElementSibling.style.display = "none"
+        chargeAvatars()
+    } else {
+        button_play.style.backgroundColor="red";
+    }
+   
 }
 const choose__difficulty = (event) => {
     console.log(difficulty.textContent);
@@ -119,35 +132,39 @@ const showHelp = () => {
     help_text.style.opacity = "1";
 }
 let usernameExists = false;
-const saveUser=()=> {
-    if(username.value==""){
+const saveUser = () => {
+    if (username.value == "") {
         console.log("vacio")
-        username.style.border="2px solid red";
+        username.style.border = "2px solid red";
         usernameExists = false;
         user_layer.classList.add("displayNone")
-    
-    }else {
-        username.style.border="0px";
+
+    } else {
+        username.style.border = "0px";
         user.textContent = username.value
         user_layer.classList.remove("displayNone")
     }
 }
 const chargeAvatars = () => {
-    for(let i = 0; i<4; i++){
-        let random = Math.floor(Math.random()*avatars.length)
-        let randomAvatar = avatars.splice(random,1)[0];
+    for (let i = 0; i < 4; i++) {
+        let div = document.createElement("DIV");
+        avatarDiv.append(div);
+        let random = Math.floor(Math.random() * avatars.length)
+        let randomAvatar = avatars.splice(random, 1)[0];
         let avatar = document.createElement("IMG");
-        avatar.src = "./assets/images/avatares/"+randomAvatar;
+        avatar.src = "./assets/images/avatares/" + randomAvatar;
         avatar.className = "avatar";
         avatarDiv.appendChild(avatar)
     }
 }
-const chooseAvatar=(event) => {
-    if(event.target.nodeName==="IMG"){
-        console.log(event.target.src)
-        console.log(event.target.src.lastIndexOf(".") + 1)
-     //   user_layer.nextElementSibling.src = "./assets/images/avatares/"+event.target.src.lastIndexOf("/") + 1
-   //     user_layer.nextElementSibling.classList.remove("displayNone")
+const chooseAvatar = (event) => {
+    if (event.target.nodeName === "IMG") {
+      /* console.log(event.target.getAttribute("src")); */
+        user_layer.nextElementSibling.src = event.target.getAttribute("src")
+        user_layer.nextElementSibling.classList.remove("displayNone")
+        user_layer.nextElementSibling.classList.remove("avatar")
+        user_layer.nextElementSibling.classList.add("avatar_user")
+        user_layer.nextElementSibling.style.margin="0px"
     }
 }
 

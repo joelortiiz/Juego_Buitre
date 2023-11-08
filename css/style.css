@@ -20,6 +20,7 @@ body {
 }
 .displayNone {
   display: none;
+  transition: all 1s ease;
 }
 .header {
   text-align: center;
@@ -82,6 +83,8 @@ body {
 .userStyle {
   color: white;
   text-shadow: black 2px 2px;
+  margin: 0px;
+  padding: 0px;
 }
 .user_name {
   padding: 8px;
@@ -135,6 +138,13 @@ body {
 }
 .avatar {
   width: 90px;
+  transition: all 0.5s ease;
+}
+.avatar:hover {
+  width: 100px;
+}
+.avatar_user {
+  width: 60px;
 }
 .button1 {
   margin: 4rem;
@@ -154,12 +164,12 @@ body {
 }
 .button2 {
   padding: 1rem;
-  margin: 4rem;
+  margin: 1rem;
   font-family: poker;
   color: white;
   background-color: red;
-  width: 300px;
-  height: 100px;
+  width: 280px;
+  height: 90px;
   font-size: 3rem;
   transition: all 0.2s ease;
 }
@@ -173,15 +183,20 @@ body {
   align-items: center;
   justify-content: center;
 }
+.container__userinput {
+  padding: 1rem;
+}
+.container__useravatar {
+  padding: 1rem;
+}
 .h3 {
   color: yellow;
   font-size: 3rem;
-  padding: 1rem;
 }
 .container__difficulty {
   margin: 1rem;
   border-radius: 1%;
-  padding-bottom: 2rem;
+  padding: 0.7rem;
   text-align: center;
   background-color: rgba(137, 43, 226, 0.6);
 }
