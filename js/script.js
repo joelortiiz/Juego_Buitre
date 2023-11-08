@@ -66,47 +66,62 @@ const countdown = document.getElementById("countdown__id");
 const difficulty = document.getElementById("difficulty");
 const help = document.getElementById("help");
 let help_text = document.getElementById("footer__difficulty");
-
+let username = document.getElementById("username");
+const button_user = document.getElementById("button_save_user");
+let settings = document.getElementById("settings");
+let user = document.getElementById("user");
+let user_layer = document.getElementById("user_layer");
+let user_container = document.getElementById("container__user");
 const check_checkbox = () => {
     if (check.checked) {
-        boton_play.disabled = false;
+        console.log("check")
+        button__play.disabled = false;
         warning.style.display = "none";
     } else {
-        boton_play.disabled = true;
+        console.log("no check")
+        button__play.disabled = true;
         warning.style.display = "block";
     }
 }
 const start_game = () => {
-
+    settings.classList.remove("displayNone")
+   // settings.classList.add("animation__settings") 
     start.style.display = "none";
     video.pause();
-   // container.style.backgroundColor = "green";
-    container.classList.add = "animation__start";
-
+    container.style.backgroundColor = "green";
     container.style.height = "950px";
     container.style.justifyContent = "start";
-    container.style.borderRadius="1%";
+    container.style.borderRadius = "1%";
 }
 const choose__difficulty = (event) => {
     console.log(difficulty.textContent);
     if (event.target.nodeName == "INPUT") {
 
         let count = setInterval(countdown__start, 1000);
-        difficulty.style.display="noe";
+        difficulty.style.display = "none";
     }
 }
 let timer = 3
 const countdown__start = () => {
-
     countdown.textContent = timer
     timer--;
-
 }
-const showHelp=()=> {
+const showHelp = () => {
     help_text.classList.toggle("displayNone")
-    help_text.style.opacity="1";
+    help_text.style.opacity = "1";
+}
+let usernameExists = false;
+const saveUser=()=> {
+    if(username.value==""){
+        username.classList.add="error";
+        usernameExists = false;
+    }else {
+        user.textContent = username.value
+        user_layer.classList.remove("displayNone")
+    }
 }
 check.addEventListener("change", check_checkbox)
 button_play.addEventListener("click", start_game)
 buttoon_start.addEventListener("click", choose__difficulty)
 help.addEventListener("click", showHelp)
+button_user.addEventListener("click", saveUser)

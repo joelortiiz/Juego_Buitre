@@ -69,6 +69,16 @@ body {
   height: auto;
   z-index: -2;
 }
+.h2 {
+  color: gray;
+}
+.container__titles {
+  width: 800px;
+  display: flex;
+  align-items: center; 
+  justify-content: space-around;
+  border: 1px solid;
+}
 .user_name {
   padding: 10px;
   border: 1px solid #cccccc;
@@ -178,6 +188,36 @@ body {
   padding: 2rem;
 
 }
+.user_option {
+  display: flex;
+  flex-direction: column;
+}
+.button__user {
+  margin-top: 0.4rem;
+  width: 220px;
+  height: 50px;
+  font-family: poker;
+  font-size: 1.6rem;
+  background-color: yellow;
+  color: green;
+  border: 2px solid black;
+  border-radius: 4%;
+  transition: all 0.4s ease;
+}
+.button__user:hover {
+  padding: 0px;
+  background-color: red;
+  color: white;
+}
+.error_input {
+  border: 2px solid red;
+  transition: all 1s ease;
+}
+.error {
+  border: 2px solid red;
+  transition: all 1s ease;
+}
+
 .game {
     /* display: non;
     transition: all 8s ease; */

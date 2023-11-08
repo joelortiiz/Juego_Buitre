@@ -10,7 +10,14 @@
   <body>
     <div class="container" id="cont">
       <header class="header" id="header__id">
-        <h1 class="title">El Buitre</h1>
+        <div class="container__titles" id="container__user">
+          <h1 class="title">El Buitre</h1>
+          <h2 class="h2 displayNone" id="user_layer">
+            Nombre:
+            <span id="user"> </span>
+          </h2>
+        </div>
+
         <footer class="title__footer">
           ¿Listo para <span class="title__footer__span">cazar</span>, o para ser
           <span class="title__footer__span">cazado</span>?
@@ -24,66 +31,66 @@
         <!-- Aquí puede ir tu contenido HTML -->
       </div>
       <section id="start">
-      <div class="container__checkbox">
-        <div>
-          <input type="checkbox" class="check" id="checkbox" checked /> Tengo
-          más de 18 años
-        </div>
-        
-        <p class="checkbox__warning" id="warning">
-          *Debes ser mayor de edad para poder jugar
-        </p>
-      </div>
-      <button id="button__play" class="button1">Jugar</button>
-      </section>
-      <section class="game">
+        <div class="container__checkbox">
+          <div>
+            <input type="checkbox" class="check" id="checkbox" checked /> Tengo
+            más de 18 años
+          </div>
 
-        <h3 class="h3" id="game__time">
-          Escribe tu nombre
-         
-      </h3>
-         
-      <div class="container__difficulty" id="difficulty">
+          <p class="checkbox__warning" id="warning">
+            *Debes ser mayor de edad para poder jugar
+          </p>
+        </div>
+        <button id="button__play" class="button1">Jugar</button>
+      </section>
+      <section class="game displayNone" id="settings">
+        <h3 class="h3" id="game__time">Escribe tu nombre</h3>
+
+        <div class="container__difficulty" id="difficulty">
           <form class="game__difficulty">
             <div class="user_option">
-              <input type="text" class="user_name" name="name">
-              
+              <input type="text" class="user_name" name="name" id="username" />
+              <button class="button__user" id="button_save_user" type="button">
+                Guardar
+              </button>
+
             </div>
-          
-           </form>
-        
-      </div>
+          </form>
+        </div>
 
         <h3 class="h3" id="game__time">
-            Escoge una dificultad 
-            <img src="./assets/images/help.png" id="help" class="img__help" alt="interrogation">
-         
+          Escoge una dificultad
+          <img
+            src="./assets/images/help.png"
+            id="help"
+            class="img__help"
+            alt="interrogation"
+          />
         </h3>
-           
+
         <div class="container__difficulty" id="difficulty">
-            <form class="game__difficulty">
-              <div class="difficulty__option1">
-                <input type="radio" class="time__radio" name="difficulty">
-                <span class="time__text1"> Fácil</span>
-              </div>
-              <div class="difficulty__option2">
-                <input type="radio" class="time__radio" name="difficulty">
-                <span class="time__text2"> Dificil</span>
-           
-              </div>
-             </form>
-             <footer class="difficulty__footer displayNone" id="footer__difficulty">
-             * Recuerda que la dificultad del juego determina la <br> velocidad y reflejos
-              que tendrá la máquina.
-             </footer>
-        </div>
-        
-        <button id="button__start" class="button2">Empezar</button>
-     
-        <div class="countdown" id="countdown__id">
-            
+          <form class="game__difficulty">
+            <div class="difficulty__option1">
+              <input type="radio" class="time__radio" name="difficulty" />
+              <span class="time__text1"> Fácil</span>
+            </div>
+            <div class="difficulty__option2">
+              <input type="radio" class="time__radio" name="difficulty" />
+              <span class="time__text2"> Dificil</span>
+            </div>
+          </form>
+          <footer
+            class="difficulty__footer displayNone"
+            id="footer__difficulty"
+          >
+            * Recuerda que la dificultad del juego determina la <br />
+            velocidad y reflejos que tendrá la máquina.
+          </footer>
         </div>
 
+        <button id="button__start" class="button2">Empezar</button>
+
+        <div class="countdown" id="countdown__id"></div>
       </section>
     </div>
     <script src="./js/script.js"></script>
