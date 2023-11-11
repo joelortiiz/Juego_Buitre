@@ -80,27 +80,29 @@ let user_layer = document.getElementById("user_layer");
 let user_container = document.getElementById("container__user");
 let avatarDiv = document.getElementById("avatar");
 
-let checkEdad=true;
+let checkEdad = true;
 const check_checkbox = () => {
     if (check.checked) {
         console.log("check")
-        
-        button_play.style.backgroundColor="green";
-    
-       // button__play.disabled = false;
-       checkEdad=true;
+
+        button_play.style.backgroundColor = "green";
+
+        // button__play.disabled = false;
+        checkEdad = true;
         warning.style.display = "none";
     } else {
         console.log("no check")
-       // button__play.disabled = true;
+
+        button_play.style.backgroundColor = "red";
+        // button__play.disabled = true;
         warning.style.display = "block";
-        checkEdad=false;
+        checkEdad = false;
 
     }
 }
 const start_game = () => {
     console.log(checkEdad)
-    if (checkEdad==true) {
+    if (checkEdad == true) {
         settings.classList.remove("displayNone")
         // settings.classList.add("animation__settings") 
         start.style.display = "none";
@@ -110,16 +112,22 @@ const start_game = () => {
         user_container.nextElementSibling.style.display = "none"
         chargeAvatars()
     } else {
-        button_play.style.backgroundColor="red";
+        button_play.style.backgroundColor = "red";
     }
-   
+
 }
+let difficultyTrue = false;
 const choose__difficulty = (event) => {
-    console.log(difficulty.textContent);
-    console.log(event.target.nodeName);
     if (event.target.nodeName == "INPUT") {
-        let count = setInterval(countdown__start, 1000);
-        difficulty.style.display = "none";
+        difficultyTrue = true
+        if (event.target.nextElementSibling.textContent == "Fácil") {
+            console.log("facil")
+            buttoon_start.style.background="rgb(74, 204, 255)"
+
+        }
+
+        //  let count = setInterval(countdown__start, 1000);
+
     }
 }
 let timer = 3
@@ -140,6 +148,7 @@ const saveUser = () => {
         user_layer.classList.add("displayNone")
 
     } else {
+        usernameExists = true;
         username.style.border = "0px";
         user.textContent = username.value
         user_layer.classList.remove("displayNone")
@@ -148,29 +157,32 @@ const saveUser = () => {
 const chargeAvatars = () => {
     for (let i = 0; i < 4; i++) {
         let div = document.createElement("DIV");
+        //     div.classList.add("")
         avatarDiv.append(div);
         let random = Math.floor(Math.random() * avatars.length)
         let randomAvatar = avatars.splice(random, 1)[0];
         let avatar = document.createElement("IMG");
         avatar.src = "./assets/images/avatares/" + randomAvatar;
         avatar.className = "avatar";
-        avatarDiv.appendChild(avatar)
+        div.appendChild(avatar)
     }
 }
+let avatarIsSet
 const chooseAvatar = (event) => {
     if (event.target.nodeName === "IMG") {
-      /* console.log(event.target.getAttribute("src")); */
+        /* console.log(event.target.getAttribute("src")); */
         user_layer.nextElementSibling.src = event.target.getAttribute("src")
         user_layer.nextElementSibling.classList.remove("displayNone")
         user_layer.nextElementSibling.classList.remove("avatar")
         user_layer.nextElementSibling.classList.add("avatar_user")
-        user_layer.nextElementSibling.style.margin="0px"
+        user_layer.nextElementSibling.style.margin = "0px"
     }
 }
 
 check.addEventListener("change", check_checkbox)
 button_play.addEventListener("click", start_game)
-buttoon_start.addEventListener("click", choose__difficulty)
+//buttoon_start.addEventListener("click", choose__difficulty)
 help.addEventListener("click", showHelp)
 button_user.addEventListener("click", saveUser)
-avatar.addEventListener("click", chooseAvatar)
+avatarDiv.addEventListener("click", chooseAvatar)
+difficulty.addEventListener("click", choose__difficulty)

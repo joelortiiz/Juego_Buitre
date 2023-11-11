@@ -20,6 +20,7 @@ body {
 }
 .displayNone {
   display: none;
+  opacity: 0;
   transition: all 1s ease;
 }
 .header {
@@ -103,6 +104,7 @@ body {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    transition: all 1s ease;
 }
 .animation__start {
   background-color: green;
@@ -136,15 +138,28 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+.border_avatar {
+
+}
 .avatar {
   width: 90px;
   transition: all 0.5s ease;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.701);
+  border-radius: 2%;
+  padding: 0.5rem;
 }
 .avatar:hover {
   width: 100px;
+  border: 4px solid yellow;
+  
+  padding: 0.2rem;
 }
 .avatar_user {
   width: 60px;
+  border-radius: 40%;
+  border: 2px solid rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 0.3rem;
 }
 .button1 {
   margin: 4rem;
@@ -167,11 +182,15 @@ body {
   margin: 1rem;
   font-family: poker;
   color: white;
-  background-color: red;
+  background-color: rgb(0, 42, 255);
+  border: 2px solid black;
+  border-radius: 2%;
   width: 280px;
   height: 90px;
   font-size: 3rem;
   transition: all 0.2s ease;
+  
+  text-shadow: black 2px 2px;
 }
 .button2:hover {
   width: 310px;
@@ -220,10 +239,13 @@ body {
 .time__text1 {
   font-size: 3rem;
   color: rgb(74, 204, 255);
+  text-shadow: rgba(255, 255, 255, 0.47) 1px 1px;
 }
 .time__text2 {
   font-size: 3rem;
   color: rgb(255, 0, 0);
+  
+  text-shadow: rgb(15, 15, 15) 1px 1px;
 }
 .difficulty__option1 {
   transition: all 0.3s ease;
@@ -246,6 +268,8 @@ body {
   padding: 0.2rem;
 }
 .difficulty__footer {
+  color: white;
+  text-shadow: black 2px 3px;
   text-align: center;
   transition: opacity 0.5s ease; 
   padding: 2rem;
