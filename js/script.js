@@ -54,12 +54,13 @@ let baraja1 = [
     "queen_of_spades"
 ]
 let baraja2 = baraja1;
-let avatars = [
+const avatars = [
     "cartas-de-poquer.png",
     "jugando-a-las-cartas.png",
     "mano.png",
     "poker.png"
 ]
+
 const start = document.getElementById("start");
 const button_play = document.getElementById("button__play");
 const button_start = document.getElementById("button__start");
@@ -117,17 +118,20 @@ const start_game = () => {
 
 }
 let difficultyTrue = false;
+let difficult = false;
+let eaasy = false;
 const choose__difficulty = (event) => {
     if (event.target.nodeName == "INPUT") {
         difficulty.children[1].classList.remove("error")
         difficultyTrue = true
         if (event.target.nextElementSibling.textContent == "Fácil") {
-            console.log("facil")
             button_start.style.background = "rgb(74, 204, 255)"
-
+            difficult = false;
+            eaasy = true;
         } else {
-            console.log("dificil")
             button_start.style.background = "red"
+            difficult = true;
+            eaasy = false;
 
         }
 
@@ -173,11 +177,12 @@ const chargeAvatars = () => {
     }
 }
 let avatarIsSet = false;
+let avatar = "";
 const chooseAvatar = (event) => {
     if (event.target.nodeName === "IMG") {
         avatarDiv.classList.remove("error")
-        /* console.log(event.target.getAttribute("src")); */
         user_layer.nextElementSibling.src = event.target.getAttribute("src")
+        avatar = event.target.getAttribute("src");
         user_layer.nextElementSibling.classList.remove("displayNone")
         user_layer.nextElementSibling.classList.remove("avatar")
         user_layer.nextElementSibling.classList.add("avatar_user")
@@ -187,12 +192,30 @@ const chooseAvatar = (event) => {
 }
 
 const playGame = () => {
-    console.log(avatarIsSet)
-    console.log(difficultyTrue)
-    console.log(usernameExists)
     if (avatarIsSet == true && usernameExists == true && difficultyTrue == true) {
         settings.style.display = "none"
         container.style.justifyContent = "start"
+        const playerName = document.getElementById("player_name")
+        playerName.textContent = username.value
+        const playerAvatar = document.getElementById("player_avatar")
+        playerAvatar.setAttribute("src", avatar)
+        //CPU Random avatar process
+        const player = document.getElementById("player")
+        player.children[1].getAttribute("src")
+     //   playerAvatar.setAttribute("src", user_container.lastElementChild.getAttribute("src"))
+        const avatarsCopy = [
+            "cartas-de-poquer.png",
+            "jugando-a-las-cartas.png",
+            "mano.png",
+            "poker.png"
+        ]
+        let random = Math.floor(Math.random() *avatarsCopy.length)
+        user_container.children[1].className="displayNone"
+        user_container.children[2].className="displayNone"
+        console.log(avatarsCopy[random])
+        const cpu_avatar = document.getElementById("CPU_avatar")
+        cpu_avatar.setAttribute("src","./assets/images/avatares/"+avatarsCopy[random])
+        
     } else {
         if (avatarIsSet == false) {
             // avatarDiv.style.backgroundColor="red"
@@ -201,16 +224,16 @@ const playGame = () => {
         if (difficultyTrue == false) {
             difficulty.children[1].classList.add("error")
         }
-        if(usernameExists==false){
+        if (usernameExists == false) {
             username.classList.add("error")
         }
     }
 }
 
 
+
 check.addEventListener("change", check_checkbox)
 button_play.addEventListener("click", start_game)
-//buttoon_start.addEventListener("click", choose__difficulty)
 help.addEventListener("click", showHelp)
 button_user.addEventListener("click", saveUser)
 avatarDiv.addEventListener("click", chooseAvatar)

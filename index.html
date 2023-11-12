@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/game.css" />
   </head>
   <body>
     <div class="container" id="cont">
@@ -16,7 +17,7 @@
             Nombre:
             <span id="user" class="userStyle"> </span>
           </h2>
-          <img src="" alt="" class="avatar displayNone">
+          <img src="" alt="" class="avatar displayNone" />
         </div>
 
         <footer class="title__footer">
@@ -44,47 +45,47 @@
         </div>
         <button id="button__play" class="button1">Jugar</button>
       </section>
-      <section class="game displayNone" id="settings">
-       <div class="game__usersettings">
-        <div class="container__userinput">
-          <h3 class="h3">Escribe tu nombre</h3>
-          <form class="game__difficulty">
-            <div class="user_option">
-              <input type="text" class="user_name" name="name" id="username" >
-              <button class="button__user" id="button_save_user" type="button">
-                Guardar
-              </button>
-            </div>
-          </form>
-        </div>
-        <div class="container__useravatar">
-          <h3 class="h3">
-            Selecciona un avatar
-          </h3>
-          <div class="game__avatar" id="avatar">
-            <!-- <div><img class="avatar" src="" alt=""></div>
+      <section class="displayNone" id="settings">
+        <div class="game__usersettings">
+          <div class="container__userinput">
+            <h3 class="h3">Escribe tu nombre</h3>
+            <form class="game__difficulty">
+              <div class="user_option">
+                <input
+                  type="text"
+                  class="user_name"
+                  name="name"
+                  id="username"
+                />
+                <button
+                  class="button__user"
+                  id="button_save_user"
+                  type="button"
+                >
+                  Guardar
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="container__useravatar">
+            <h3 class="h3">Selecciona un avatar</h3>
+            <div class="game__avatar" id="avatar">
+              <!-- <div><img class="avatar" src="" alt=""></div>
             <div><img class="avatar" src="" alt=""></div>
             <div><img class="avatar" src="" alt=""></div>
             <div><img class="avatar" src="" alt=""></div> -->
+            </div>
           </div>
         </div>
 
-       </div>
-       
-    
         <div class="container__difficulty" id="difficulty">
           <h3 class="h3" id="game__time">
             Escoge una dificultad
-            <img
-              src="./assets/images/help.png"
-              id="help"
-              class="img__help"
-              alt="interrogation"
-            />
+            <img src="./assets/images/help.png" id="help" class="img__help" alt="interrogation"/>
           </h3>
           <form class="game__difficulty">
             <div class="difficulty__option1">
-              <input type="radio" class="time__radio" name="difficulty"  />
+              <input type="radio" class="time__radio" name="difficulty" />
               <label class="time__text1">Fácil</label>
             </div>
             <div class="difficulty__option2">
@@ -92,14 +93,56 @@
               <label class="time__text2"> Difícil</label>
             </div>
           </form>
-          <footer class="difficulty__footer displayNone" id="footer__difficulty">
-            * Recuerda que la dificultad del juego determina la <br >
+          <footer
+            class="difficulty__footer displayNone"
+            id="footer__difficulty"
+          >
+            * Recuerda que la dificultad del juego determina la <br />
             velocidad y reflejos que tendrá la máquina.
           </footer>
         </div>
 
         <div class="countdown" id="countdown__id">
           <button id="button__start" class="button2">Empezar</button>
+        </div>
+      </section>
+      <section class="game">
+        <div class="game__container" style="background-color: yellow; height: 600px; width: 1000px;">
+          <div id="player">
+            <div class="player__name">
+              Jugador:  
+              <span class="player__name__span" id="player_name">Joel</span>
+              <img src="./assets/images/avatares/jugando-a-las-cartas.png" alt="" class="game__avatars" id="player_avatar">
+            </div>
+            <div>
+              <img src="./assets/images/baraja/10_of_clubs.png" alt="" class="card">
+            </div>
+            <div id="buttons__player" class="container__button">
+              <button type="button" class="button__hunt">CAZAR</button>
+              <button type="button" class="button__giveCard">LANZAR</button>
+            </div>
+            </div>
+          <div id="table">
+            <div class="table">
+              <img src="./assets/images/avatares/jugando-a-las-cartas.png" alt="" class="game__avatars" id="player_avatar">
+              <img src="./assets/images/avatares/jugando-a-las-cartas.png" alt="" class="game__avatars" id="player_avatar">
+           
+            </div>
+          </div>
+          <div id="CPU">
+            <div class="player__name">
+              Jugador:  
+              <span class="player__name__span" id="player_name">CPU</span>
+              <img src="" alt="" class="game__avatars" id="CPU_avatar">
+            </div>
+            <div>
+              <img src="./assets/images/baraja/atras.png" alt="" class="card">
+            </div>
+            <div id="buttons__player" class="container__button">
+              <button type="button" class="button__hunt">CAZAR</button>
+              <button type="button" class="button__giveCard">LANZAR</button>
+            </div>
+          </div>
         </div>
       </section>
     </div>

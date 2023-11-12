@@ -1,0 +1,51 @@
+.game__container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid green;
+
+}
+.player__name {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+    color: white;
+}
+.player__name__span {
+    color: red;
+    text-shadow: white 2px 2px;
+    font-size: 2rem;
+    padding: 1rem;
+
+}
+.game__avatars {
+    width: 70px;
+    height: 70px;
+}
+.container__button {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+
+}
+.button__hunt {
+    font-family: poker;
+    padding: 0.6rem;
+    margin: 1rem;
+    background-color: gray;
+}
+.button__giveCard {
+    font-family: poker;
+    padding: 0.6rem;
+
+} 
+.card {
+    padding: 2rem;
+    width: 200px;
+    height:180px;
+}
+.table {
+    background: green;
+}
