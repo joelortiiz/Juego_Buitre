@@ -138,9 +138,7 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.border_avatar {
 
-}
 .avatar {
   width: 90px;
   transition: all 0.5s ease;
@@ -188,8 +186,7 @@ body {
   width: 280px;
   height: 90px;
   font-size: 3rem;
-  transition: all 0.2s ease;
-  
+  transition: all 0.4s ease;
   text-shadow: black 2px 2px;
 }
 .button2:hover {
@@ -213,6 +210,10 @@ body {
   font-size: 3rem;
 }
 .container__difficulty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin: 1rem;
   border-radius: 1%;
   padding: 0.7rem;
@@ -232,12 +233,17 @@ body {
 
 
 }
+.error {
+  background-color: rgba(255, 0, 0, 0.5);
+  padding: 0.3rem;
+}
 .time__radio:checked {
   background-color: rgb(251, 255, 0); /* Color del botón seleccionado */
   
 }
 .time__text1 {
   font-size: 3rem;
+  margin-right: 3rem;
   color: rgb(74, 204, 255);
   text-shadow: rgba(255, 255, 255, 0.47) 1px 1px;
 }

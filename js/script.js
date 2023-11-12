@@ -62,7 +62,7 @@ let avatars = [
 ]
 const start = document.getElementById("start");
 const button_play = document.getElementById("button__play");
-const buttoon_start = document.getElementById("button__start");
+const button_start = document.getElementById("button__start");
 const check = document.getElementById("checkbox");
 const warning = document.getElementById("warning");
 const header = document.getElementById("header__id");
@@ -119,10 +119,15 @@ const start_game = () => {
 let difficultyTrue = false;
 const choose__difficulty = (event) => {
     if (event.target.nodeName == "INPUT") {
+        difficulty.children[1].classList.remove("error")
         difficultyTrue = true
         if (event.target.nextElementSibling.textContent == "Fácil") {
             console.log("facil")
-            buttoon_start.style.background="rgb(74, 204, 255)"
+            button_start.style.background = "rgb(74, 204, 255)"
+
+        } else {
+            console.log("dificil")
+            button_start.style.background = "red"
 
         }
 
@@ -146,8 +151,8 @@ const saveUser = () => {
         username.style.border = "2px solid red";
         usernameExists = false;
         user_layer.classList.add("displayNone")
-
     } else {
+        username.classList.remove("error")
         usernameExists = true;
         username.style.border = "0px";
         user.textContent = username.value
@@ -167,17 +172,41 @@ const chargeAvatars = () => {
         div.appendChild(avatar)
     }
 }
-let avatarIsSet
+let avatarIsSet = false;
 const chooseAvatar = (event) => {
     if (event.target.nodeName === "IMG") {
+        avatarDiv.classList.remove("error")
         /* console.log(event.target.getAttribute("src")); */
         user_layer.nextElementSibling.src = event.target.getAttribute("src")
         user_layer.nextElementSibling.classList.remove("displayNone")
         user_layer.nextElementSibling.classList.remove("avatar")
         user_layer.nextElementSibling.classList.add("avatar_user")
-        user_layer.nextElementSibling.style.margin = "0px"
+        user_layer.nextElementSibling.style.margin = "0px";
+        avatarIsSet = true
     }
 }
+
+const playGame = () => {
+    console.log(avatarIsSet)
+    console.log(difficultyTrue)
+    console.log(usernameExists)
+    if (avatarIsSet == true && usernameExists == true && difficultyTrue == true) {
+        settings.style.display = "none"
+        container.style.justifyContent = "start"
+    } else {
+        if (avatarIsSet == false) {
+            // avatarDiv.style.backgroundColor="red"
+            avatarDiv.classList.add("error")
+        }
+        if (difficultyTrue == false) {
+            difficulty.children[1].classList.add("error")
+        }
+        if(usernameExists==false){
+            username.classList.add("error")
+        }
+    }
+}
+
 
 check.addEventListener("change", check_checkbox)
 button_play.addEventListener("click", start_game)
@@ -186,3 +215,4 @@ help.addEventListener("click", showHelp)
 button_user.addEventListener("click", saveUser)
 avatarDiv.addEventListener("click", chooseAvatar)
 difficulty.addEventListener("click", choose__difficulty)
+button_start.addEventListener("click", playGame)
