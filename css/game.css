@@ -1,8 +1,13 @@
+.game {
+    width: 100%;
+}
 .game__container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     border: 2px solid green;
+    width: 100%;
+    
 
 }
 .player__name {
@@ -43,9 +48,12 @@
 } 
 .card {
     padding: 2rem;
-    width: 200px;
-    height:180px;
+    width: 250px;
+    height:320px;
 }
 .table {
-    background: green;
+    background: wheat;
+}
+.table__img {
+    
 }
