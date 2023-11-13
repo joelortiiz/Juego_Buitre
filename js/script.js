@@ -301,9 +301,12 @@ const CPULaunchCard =()=> {
 const winGameCheck =(jugador, carta, cardBeforeSave)=> {
     cardBefore.setAttribute("src", cardBeforeSave)  
     tableCard.setAttribute("src", "./assets/images/baraja/"+carta+".png")
-    
+    imageOfTable = tableCard.getAttribute("src")
     console.log(tableCard.getAttribute("src"))
 console.log(cardBeforeSave)
+    if(cardBefore.contains(imageOfTable.lastIndexOf("/"))) {
+        
+    }
 
 }
 
