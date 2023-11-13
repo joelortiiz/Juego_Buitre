@@ -84,12 +84,17 @@ const playerGiveCardButton = document.getElementById("playerGiveCard");
 const tableCard = document.getElementById("tableCard");
 const playerContainer = document.getElementById("player");
 const cardBefore = document.getElementById("cardBefore");
+const button__hunt = document.getElementById("button__hunt");
 
 let winGame = false;
 let CPUTurn = false;
 let PlayerTurn = false;
 let Playercards = 10;
 let CPUcards = 10;
+
+let timeStart;
+let timeEnd;
+let CPUTime;
 
 let checkEdad = true;
 const check_checkbox = () => {
@@ -282,18 +287,24 @@ const playerLaunchCard = async ()=> {
             console.log(barajaPlayerFinal.length)
             console.log(barajaPlayerFinal[0])
             winGameCheck("Player",barajaPlayerFinal[0], cardBefore);
-            //CPUTurn == true;
+            CPUTurn == true;
         }
     }
 }
-const CPULaunchCard =()=> {
+ function wait(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+const CPULaunchCard = async()=> {
+    await wait(1000 + Math.random() * 2000);
     if(winGame == false) {
         if (CPUTurn == true) {
-            console.log(barajaPlayerFinal.length)
+            
+            console.log(barajaCPUFinal.length)
             tableCard.setAttribute("src", "./assets/images/baraja/"+barajaCPUFinalFinal[0]+".png" )
-            CPUTurn == true
             barajaPlayerFinal.shift();
+            CPUcards--;
             console.log(barajaPlayerFinal.length)
+            CPUTurn == true
         }
     }
 }
@@ -303,11 +314,23 @@ const winGameCheck =(jugador, carta, cardBeforeSave)=> {
     tableCard.setAttribute("src", "./assets/images/baraja/"+carta+".png")
     imageOfTable = tableCard.getAttribute("src")
     console.log(tableCard.getAttribute("src"))
-console.log(cardBeforeSave)
-    if(cardBefore.contains(imageOfTable.lastIndexOf("/"))) {
-        
-    }
+    let nameCard = carta.substring(carta.lastIndexOf("/") + 1);
+    let numberCard = nameCard.substring(0,1)
+    console.log(numberCard)
+    let nameCardBefore = cardBeforeSave.substring(cardBeforeSave.lastIndexOf("/") + 1);
+    let numberCardBefore = nameCardBefore.substring(0,1)
+    console.log(numberCardBefore)
+    
+    checkCards(numberCard, numberCardBefore);
+   
 
+}
+
+const checkCards=(numberCard, numberCardBefore)=> {
+    
+    if(numberCard==numberCardBefore) {
+        button__hunt.setAttribute("class", "button__hunt")
+    }
 }
 
 check.addEventListener("change", check_checkbox)
