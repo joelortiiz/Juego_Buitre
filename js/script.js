@@ -72,14 +72,23 @@ const container = document.getElementById("cont");
 const countdown = document.getElementById("countdown__id");
 const difficulty = document.getElementById("difficulty");
 const help = document.getElementById("help");
-let help_text = document.getElementById("footer__difficulty");
-let username = document.getElementById("username");
+const help_text = document.getElementById("footer__difficulty");
+const username = document.getElementById("username");
 const button_user = document.getElementById("button_save_user");
-let settings = document.getElementById("settings");
-let user = document.getElementById("user");
-let user_layer = document.getElementById("user_layer");
-let user_container = document.getElementById("container__user");
-let avatarDiv = document.getElementById("avatar");
+const settings = document.getElementById("settings");
+const user = document.getElementById("user");
+const user_layer = document.getElementById("user_layer");
+const user_container = document.getElementById("container__user");
+const avatarDiv = document.getElementById("avatar");
+const playerGiveCardButton = document.getElementById("playerGiveCard");
+const tableCard = document.getElementById("tableCard");
+const playerContainer = document.getElementById("player");
+
+let winGame = false;
+let CPUTurn = false;
+let PlayerTurn = false;
+let Playercards = 10;
+let CPUcards = 10;
 
 let checkEdad = true;
 const check_checkbox = () => {
@@ -105,7 +114,7 @@ const start_game = () => {
     console.log(checkEdad)
     if (checkEdad == true) {
         settings.classList.remove("displayNone")
-        // settings.classList.add("animation__settings") 
+        // settings.classList.add("animation__settings")
         start.style.display = "none";
         video.playbackRate = 0.8;
         settings.style.marginBottom = "0px";
@@ -190,7 +199,7 @@ const chooseAvatar = (event) => {
         avatarIsSet = true
     }
 }
-
+let startToPlay = false;
 const playGame = () => {
     if (avatarIsSet == true && usernameExists == true && difficultyTrue == true) {
         settings.style.display = "none"
@@ -202,20 +211,23 @@ const playGame = () => {
         //CPU Random avatar process
         const player = document.getElementById("player")
         player.children[1].getAttribute("src")
-     //   playerAvatar.setAttribute("src", user_container.lastElementChild.getAttribute("src"))
+        //   playerAvatar.setAttribute("src", user_container.lastElementChild.getAttribute("src"))
         const avatarsCopy = [
             "cartas-de-poquer.png",
             "jugando-a-las-cartas.png",
             "mano.png",
             "poker.png"
         ]
-        let random = Math.floor(Math.random() *avatarsCopy.length)
-        user_container.children[1].className="displayNone"
-        user_container.children[2].className="displayNone"
+        let random = Math.floor(Math.random() * avatarsCopy.length)
+        user_container.children[1].className = "displayNone"
+        user_container.children[2].className = "displayNone"
         console.log(avatarsCopy[random])
         const cpu_avatar = document.getElementById("CPU_avatar")
-        cpu_avatar.setAttribute("src","./assets/images/avatares/"+avatarsCopy[random])
-        
+        cpu_avatar.setAttribute("src", "./assets/images/avatares/" + avatarsCopy[random])
+        shufflingCards();
+        starTtoPlay = true
+        playerStart();
+        CPUStartStart();
     } else {
         if (avatarIsSet == false) {
             // avatarDiv.style.backgroundColor="red"
@@ -229,7 +241,50 @@ const playGame = () => {
         }
     }
 }
+let barajaPlayerFinal
+const playerStart =()=> {
+    barajaPlayerFinal = baraja1.slice(0,10)
 
+}
+let barajaCPUFinal
+const CPUStart =()=> {
+    barajaPlayerFinal = baraja1.slice(0,10)
+
+}
+const shufflingCards = () => {
+    for (let i = baraja1.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [baraja1[i], baraja1[j]] = [baraja1[j], baraja1[i]];
+    }
+    for (let i = baraja2.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [baraja2[i], baraja2[j]] = [baraja2[j], baraja2[i]];
+    }
+
+}
+const playerLaunchCard =()=> {
+    if(winGame == false) {
+        if (CPUTurn == false && PlayerTurn == true) {
+            console.log(barajaPlayerFinal.length)
+            tableCard.setAttribute("src", "./assets/images/baraja/"+barajaPlayerFinal[0]+".png" )
+            CPUTurn = true
+            PlayerTurn = false
+            barajaPlayerFinal.shift();
+            console.log(barajaPlayerFinal.length)
+        }
+    }
+}
+const CPULaunchCard =()=> {
+    if(winGame == false) {
+        if (PlayerTurn == false && CPUTurn == true) {
+            console.log(barajaPlayerFinal.length)
+            tableCard.setAttribute("src", "./assets/images/baraja/"+barajaPlayerFinal[0]+".png" )
+            CPUTurn == true
+            barajaPlayerFinal.shift();
+            console.log(barajaPlayerFinal.length)
+        }
+    }
+}
 
 
 check.addEventListener("change", check_checkbox)
@@ -239,3 +294,4 @@ button_user.addEventListener("click", saveUser)
 avatarDiv.addEventListener("click", chooseAvatar)
 difficulty.addEventListener("click", choose__difficulty)
 button_start.addEventListener("click", playGame)
+playerGiveCardButton.addEventListener("click", playerLaunchCard)

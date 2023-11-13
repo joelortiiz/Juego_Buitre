@@ -52,8 +52,9 @@
     height:320px;
 }
 .table {
-    background: wheat;
+    border: 2px solid black;
+    padding: 2rem;
 }
 .table__img {
-    
+    width: 370px;
 }
