@@ -61,5 +61,11 @@
 }
 .table__imgSmall {
     width: 100px;
-    height: 100px;
+    height: 120px;
+}
+.table__div2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
 }

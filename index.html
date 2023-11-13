@@ -114,7 +114,7 @@
               <span class="player__name__span" id="player_name">Joel</span>
               <img src="" alt="" class="game__avatars" id="player_avatar">
             </div>
-            <div>
+            <div class="player__name">
               Cartas Restantes: 
               <span id="PlayerCountCards"></span>
             </div>
@@ -131,9 +131,11 @@
               <div>
                 <img src="./assets/images/baraja/atras.png" id="tableCard" class="table__img" alt="" srcset="">
               </div>
-              <div>
-                  <img src="" class="table__imgSmall" alt="" srcset="" id="cardBefore">
+              <div class="table__div2 player__name">
+                Carta Anterior: 
+                  <img src="./assets/images/baraja/atras.png" class="table__imgSmall" alt="" srcset="" id="cardBefore">
               </div>
+             
              </div>
             
           </div>
@@ -146,7 +148,7 @@
             <div>
               <img src="./assets/images/baraja/atras.png" alt="" class="card">
             </div>
-            <p class="player__name__span displayNone">
+            <p class="player__name displayNone">
                 
             </p>
             <div id="buttons__player2" class="container__button displayNone">
@@ -158,6 +160,9 @@
           </div>
         </div>
       </section>
+      <div class="displayNone player__name">
+        HAS GANADO EL JUEGO
+      </div>
     </div>
     <script src="./js/script.js"></script>
   </body>

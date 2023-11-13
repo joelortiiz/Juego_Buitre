@@ -250,7 +250,7 @@ const playerStart =()=> {
 }
 let barajaCPUFinal
 const CPUStart =()=> {
-    barajaPlayerFinal = baraja2.slice(0,10)
+    barajaCPUFinal = baraja2.slice(0,10)
     const containerCPU = document.getElementById("CPU")
     containerCPU.lastElementChild.classList.remove("displayNone")
     if(difficult == true) {
@@ -274,12 +274,15 @@ const playerLaunchCard = async ()=> {
     if(winGame == false) {
         if (CPUTurn == false) {
             console.log(barajaPlayerFinal.length)
+            let cardBefore = tableCard.getAttribute("src")
             tableCard.setAttribute("src", "./assets/images/baraja/"+barajaPlayerFinal[0]+".png" )
-            CPUTurn = true
-            PlayerTurn = false
+            Playercards--;
+            PlayerCountCards.textContent = Playercards
             barajaPlayerFinal.shift();
             console.log(barajaPlayerFinal.length)
-            winGameCheck("Player",barajaPlayerFinal[0]);
+            console.log(barajaPlayerFinal[0])
+            winGameCheck("Player",barajaPlayerFinal[0], cardBefore);
+            //CPUTurn == true;
         }
     }
 }
@@ -295,11 +298,13 @@ const CPULaunchCard =()=> {
     }
 }
 
-const winGameCheck =(jugador, carta)=> {
-    let SavecardBefore = tableCard.getAttribute.src
-    cardBefore.setAttribute("src", "./assets/images/baraja/"+SavecardBefore+".png") = 
-
+const winGameCheck =(jugador, carta, cardBeforeSave)=> {
+    cardBefore.setAttribute("src", cardBeforeSave)  
     tableCard.setAttribute("src", "./assets/images/baraja/"+carta+".png")
+    
+    console.log(tableCard.getAttribute("src"))
+console.log(cardBeforeSave)
+
 }
 
 check.addEventListener("change", check_checkbox)
