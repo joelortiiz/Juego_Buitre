@@ -227,7 +227,7 @@ const playGame = () => {
         shufflingCards();
         starTtoPlay = true
         playerStart();
-        CPUStartStart();
+        CPUStart();
     } else {
         if (avatarIsSet == false) {
             // avatarDiv.style.backgroundColor="red"
@@ -248,8 +248,14 @@ const playerStart =()=> {
 }
 let barajaCPUFinal
 const CPUStart =()=> {
-    barajaPlayerFinal = baraja1.slice(0,10)
-
+    barajaPlayerFinal = baraja2.slice(0,10)
+    const containerCPU = document.getElementById("CPU")
+    containerCPU.lastElementChild.classList.remove("displayNone")
+    if(difficult == true) {
+        containerCPU.lastElementChild.textContent = "Hard Mode"
+    } else {
+        containerCPU.lastElementChild.textContent = "Easy Mode"
+    }
 }
 const shufflingCards = () => {
     for (let i = baraja1.length - 1; i > 0; i--) {
@@ -278,14 +284,16 @@ const CPULaunchCard =()=> {
     if(winGame == false) {
         if (PlayerTurn == false && CPUTurn == true) {
             console.log(barajaPlayerFinal.length)
-            tableCard.setAttribute("src", "./assets/images/baraja/"+barajaPlayerFinal[0]+".png" )
+            tableCard.setAttribute("src", "./assets/images/baraja/"+barajaCPUFinalFinal[0]+".png" )
             CPUTurn == true
             barajaPlayerFinal.shift();
             console.log(barajaPlayerFinal.length)
         }
     }
 }
-
+const winGameCheck =()=> {
+    
+}
 
 check.addEventListener("change", check_checkbox)
 button_play.addEventListener("click", start_game)

@@ -1,5 +1,6 @@
 .game {
     width: 100%;
+    text-align: center;
 }
 .game__container {
     display: flex;
