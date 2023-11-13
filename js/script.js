@@ -83,6 +83,7 @@ const avatarDiv = document.getElementById("avatar");
 const playerGiveCardButton = document.getElementById("playerGiveCard");
 const tableCard = document.getElementById("tableCard");
 const playerContainer = document.getElementById("player");
+const cardBefore = document.getElementById("cardBefore");
 
 let winGame = false;
 let CPUTurn = false;
@@ -242,9 +243,10 @@ const playGame = () => {
     }
 }
 let barajaPlayerFinal
+const PlayerCountCards = document.getElementById("PlayerCountCards")
 const playerStart =()=> {
     barajaPlayerFinal = baraja1.slice(0,10)
-
+    PlayerCountCards.textContent = Playercards
 }
 let barajaCPUFinal
 const CPUStart =()=> {
@@ -268,21 +270,22 @@ const shufflingCards = () => {
     }
 
 }
-const playerLaunchCard =()=> {
+const playerLaunchCard = async ()=> {
     if(winGame == false) {
-        if (CPUTurn == false && PlayerTurn == true) {
+        if (CPUTurn == false) {
             console.log(barajaPlayerFinal.length)
             tableCard.setAttribute("src", "./assets/images/baraja/"+barajaPlayerFinal[0]+".png" )
             CPUTurn = true
             PlayerTurn = false
             barajaPlayerFinal.shift();
             console.log(barajaPlayerFinal.length)
+            winGameCheck("Player",barajaPlayerFinal[0]);
         }
     }
 }
 const CPULaunchCard =()=> {
     if(winGame == false) {
-        if (PlayerTurn == false && CPUTurn == true) {
+        if (CPUTurn == true) {
             console.log(barajaPlayerFinal.length)
             tableCard.setAttribute("src", "./assets/images/baraja/"+barajaCPUFinalFinal[0]+".png" )
             CPUTurn == true
@@ -291,8 +294,12 @@ const CPULaunchCard =()=> {
         }
     }
 }
-const winGameCheck =()=> {
-    
+
+const winGameCheck =(jugador, carta)=> {
+    let SavecardBefore = tableCard.getAttribute.src
+    cardBefore.setAttribute("src", "./assets/images/baraja/"+SavecardBefore+".png") = 
+
+    tableCard.setAttribute("src", "./assets/images/baraja/"+carta+".png")
 }
 
 check.addEventListener("change", check_checkbox)

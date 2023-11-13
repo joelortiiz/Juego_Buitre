@@ -49,13 +49,17 @@
 } 
 .card {
     padding: 2rem;
-    width: 250px;
-    height:320px;
+    width: 230px;
+    height:300px;
 }
 .table {
     border: 2px solid black;
-    padding: 2rem;
 }
 .table__img {
     width: 370px;
+    padding: 1.5rem;
+}
+.table__imgSmall {
+    width: 100px;
+    height: 100px;
 }
