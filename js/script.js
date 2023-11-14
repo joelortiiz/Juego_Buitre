@@ -53,7 +53,62 @@ let baraja1 = [
     "queen_of_hearts",
     "queen_of_spades"
 ]
-let baraja2 = baraja1;
+let baraja2 = [
+    "2_of_clubs",
+    "2_of_diamonds",
+    "2_of_hearts",
+    "2_of_spades",
+    "3_of_clubs",
+    "3_of_diamonds",
+    "3_of_hearts",
+    "3_of_spades",
+    "4_of_clubs",
+    "4_of_diamonds",
+    "4_of_hearts",
+    "4_of_spades",
+    "5_of_clubs",
+    "5_of_diamonds",
+    "5_of_hearts",
+    "5_of_spades",
+    "6_of_clubs",
+    "6_of_diamonds",
+    "6_of_hearts",
+    "6_of_spades",
+    "7_of_clubs",
+    "7_of_diamonds",
+    "7_of_hearts",
+    "7_of_spades",
+    "8_of_clubs",
+    "8_of_diamonds",
+    "8_of_hearts",
+    "8_of_spades",
+    "9_of_clubs",
+    "9_of_diamonds",
+    "9_of_hearts",
+    "9_of_spades",
+    "10_of_clubs",
+    "10_of_diamonds",
+    "10_of_hearts",
+    "10_of_spades",
+    "ace_of_clubs",
+    "ace_of_diamonds",
+    "ace_of_hearts",
+    "ace_of_spades",
+    "ace_of_spades2",
+    "ace_of_spades2",
+    "jack_of_diamonds",
+    "jack_of_hearts",
+    "jack_of_spades",
+    "king_of_clubs",
+    "king_of_diamonds",
+    "king_of_hearts",
+    "king_of_spades",
+    "queen_of_clubs",
+    "queen_of_diamonds",
+    "queen_of_hearts",
+    "queen_of_spades"
+]
+
 const avatars = [
     "cartas-de-poquer.png",
     "jugando-a-las-cartas.png",
@@ -230,8 +285,9 @@ const playGame = () => {
         console.log(avatarsCopy[random])
         const cpu_avatar = document.getElementById("CPU_avatar")
         cpu_avatar.setAttribute("src", "./assets/images/avatares/" + avatarsCopy[random])
-        shufflingCards();
+     //   shufflingCards();
         starTtoPlay = true
+        
         playerStart();
         CPUStart();
     } else {
@@ -248,17 +304,19 @@ const playGame = () => {
     }
 }
 let barajaPlayerFinal
+
 const PlayerCountCards = document.getElementById("PlayerCountCards")
-const playerStart =()=> {
-    barajaPlayerFinal = baraja1.slice(0,10)
+
+const playerStart = () => {
+    barajaPlayerFinal = baraja1.slice(0, 10)
     PlayerCountCards.textContent = Playercards
 }
 let barajaCPUFinal
-const CPUStart =()=> {
-    barajaCPUFinal = baraja2.slice(0,10)
+const CPUStart = () => {
+    barajaCPUFinal = baraja2.slice(0, 10)
     const containerCPU = document.getElementById("CPU")
     containerCPU.lastElementChild.classList.remove("displayNone")
-    if(difficult == true) {
+    if (difficult == true) {
         containerCPU.lastElementChild.textContent = "Hard Mode"
     } else {
         containerCPU.lastElementChild.textContent = "Easy Mode"
@@ -275,64 +333,90 @@ const shufflingCards = () => {
     }
 
 }
-const playerLaunchCard = async ()=> {
-    if(winGame == false) {
-        if (CPUTurn == false) {
-            console.log(barajaPlayerFinal.length)
+const playerLaunchCard = () => {
+    if (winGame == false) {
+        if (CPUTurn == false || Playercards == 0) {
             let cardBefore = tableCard.getAttribute("src")
-            tableCard.setAttribute("src", "./assets/images/baraja/"+barajaPlayerFinal[0]+".png" )
+            tableCard.setAttribute("src", "./assets/images/baraja/" + barajaPlayerFinal[0] + ".png")
             Playercards--;
             PlayerCountCards.textContent = Playercards
             barajaPlayerFinal.shift();
-            console.log(barajaPlayerFinal.length)
-            console.log(barajaPlayerFinal[0])
-            winGameCheck("Player",barajaPlayerFinal[0], cardBefore);
-            CPUTurn == true;
+            console.log(cardBefore)
+            coincidenceCheck("Player", barajaPlayerFinal[0], cardBefore);
+            CPUTurn = true;
+            CPULaunchCard();
         }
     }
 }
- function wait(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-const CPULaunchCard = async()=> {
-    await wait(1000 + Math.random() * 2000);
-    if(winGame == false) {
-        if (CPUTurn == true) {
-            
-            console.log(barajaCPUFinal.length)
-            tableCard.setAttribute("src", "./assets/images/baraja/"+barajaCPUFinalFinal[0]+".png" )
-            barajaPlayerFinal.shift();
-            CPUcards--;
-            console.log(barajaPlayerFinal.length)
-            CPUTurn == true
-        }
-    }
-}
+let ejecucionHabilitada = true;
 
-const winGameCheck =(jugador, carta, cardBeforeSave)=> {
-    cardBefore.setAttribute("src", cardBeforeSave)  
-    tableCard.setAttribute("src", "./assets/images/baraja/"+carta+".png")
+const CPULaunchCard = () => {
+  // Verificar si la ejecución está habilitada
+  if (ejecucionHabilitada) {
+    ejecucionHabilitada = false; // Deshabilitar futuras ejecuciones
+    setTimeout(() => {
+      if (winGame == false) {
+        if (CPUTurn == true || Playercards == 0) {
+          let cardBefore = tableCard.getAttribute("src");
+          tableCard.setAttribute("src", "./assets/images/baraja/" + barajaCPUFinal[0] + ".png");
+          barajaCPUFinal.shift();
+          CPUcards--;
+          coincidenceCheck("CPI", barajaCPUFinal[0], cardBefore);
+
+          CPUTurn = false;
+        }
+      } else {
+        showDraw();
+      }
+
+      ejecucionHabilitada = true; // Habilitar la ejecución para la próxima llamada
+    }, 2000);
+  }
+};
+
+const showDraw=()=> {
+    
+}
+// Llamada a la función CPULaunchCard
+
+
+
+const coincidenceCheck = (jugador, carta, cardBeforeSave) => {
+    if(cardBeforeSave != "./assets/images/baraja/atras.png")
+    cardBefore.setAttribute("src", cardBeforeSave)
+    tableCard.setAttribute("src", "./assets/images/baraja/" + carta + ".png")
     imageOfTable = tableCard.getAttribute("src")
     console.log(tableCard.getAttribute("src"))
     let nameCard = carta.substring(carta.lastIndexOf("/") + 1);
-    let numberCard = nameCard.substring(0,1)
+    console.log(cardBeforeSave)
+    let numberCard = nameCard.substring(0, 1)
     console.log(numberCard)
     let nameCardBefore = cardBeforeSave.substring(cardBeforeSave.lastIndexOf("/") + 1);
-    let numberCardBefore = nameCardBefore.substring(0,1)
+    let numberCardBefore = nameCardBefore.substring(0, 1)
     console.log(numberCardBefore)
-    
     checkCards(numberCard, numberCardBefore);
-   
+
 
 }
 
-const checkCards=(numberCard, numberCardBefore)=> {
-    
-    if(numberCard==numberCardBefore) {
+const checkCards = (numberCard, numberCardBefore) => {
+    if (numberCard == numberCardBefore) {
+        winGame = true;
+            // Guardar el tiempo de inicio
+            clearTimeout(timeoutId);
+            tiempoInicio = new Date().getTime();
+            // Simular el reflejo aleatorio de la máquina entre 1-2 segundos
+            maquinaReflejo = setTimeout(
+            1000 + Math.random() * 1000); ;
         button__hunt.setAttribute("class", "button__hunt")
-    }
+        const win = document.getElementById("win");
+        const game = document.getElementById("game");
+        
+        game.style.display="none";
+        win.style.display="block";
+    } 
 }
-
+document.addEventListener("DOMContentLoaded", shufflingCards)
 check.addEventListener("change", check_checkbox)
 button_play.addEventListener("click", start_game)
 help.addEventListener("click", showHelp)

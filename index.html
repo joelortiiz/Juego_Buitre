@@ -106,7 +106,7 @@
           <button id="button__start" class="button2">Empezar</button>
         </div>
       </section>
-      <section class="game ">
+      <section class="game" id="game">
         <div class="game__container ">
           <div id="player">
             <div class="player__name">
@@ -160,8 +160,19 @@
           </div>
         </div>
       </section>
-      <div class="displayNone player__name">
-        HAS GANADO EL JUEGO
+      <div class="displayNone player__name" id="win">
+       
+        <div class="end__game">
+          <p>
+            HAS GANADO
+          </p>
+          <div>
+            <button type="button">¿Otra Partida?</button>
+          </div>
+        </div>
+      </div>
+      <div class="displayNone player__name end__game" id="win">
+        HABÉIS EMPATADO
       </div>
     </div>
     <script src="./js/script.js"></script>

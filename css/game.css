@@ -83,3 +83,6 @@
     align-items: center;
     justify-content: space-around;
 }
+.end__game {
+    display: flex;
+}
