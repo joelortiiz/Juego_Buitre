@@ -359,10 +359,12 @@ const playerLaunchCard = () => {
             CPULaunchCard();
            
         } else if (Playercards == 1 || barajaPlayerFinal.length == 1) {
-            game.style.display= "none";
-            draw.classList.remove("displayNone");
+             game.style.display= "none";
+             result.classList.remove("displayNone");
 
-          //  location.reload();
+             draw.classList.remove("displayNone");
+
+           // location.reload();
 
         }
     }
@@ -443,7 +445,7 @@ debugger
     console.log(CPUTime)
     console.log("Conteo detenido. Tiempo transcurrido: " + tiempoTranscurrido + " milisegundos");
    
-    container.style.justifyContent="start"
+  //  container.style.justifyContent="start"
     
     tiempoTranscurrido = tiempoTranscurrido / 1000
     CPUTime = CPUTime / 1000
@@ -453,6 +455,8 @@ debugger
         
         console.log("gana usuario")
         win.classList.remove("displayNone");
+        
+        win.style.display="flex";
         timeFinalUser.textContent = tiempoTranscurrido.toFixed(2)
         timeFinalCPU.textContent = CPUTime.toFixed(2)
     } else {
@@ -460,6 +464,7 @@ debugger
         const timeFinalCPU_lose = document.getElementById("timeFinalCPU_lose");
     
         lose.classList.remove("displayNone");
+        lose.style.display="flex";
         console.log("gana CPU")
         timeFinalUser_lose.textContent = tiempoTranscurrido.toFixed(2)
         timeFinalCPU_lose.textContent = CPUTime.toFixed(2)

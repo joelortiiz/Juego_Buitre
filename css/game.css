@@ -72,9 +72,6 @@
     width: 140px;
     height:180px;
 }
-.table {
-
-}
 .table__img {
     width: 300px;
     padding: 1.5rem;
@@ -89,14 +86,10 @@
     align-items: center;
     justify-content: space-around;
 }
-.end__game {
-    display: flex;
-}
 .container_results {
     text-align: center;
 }
 .results {
-    display: flex;
     width: 800px;
     height: 300px;
     flex-direction: column;
