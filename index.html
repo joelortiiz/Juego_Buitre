@@ -185,8 +185,8 @@
           </div>
         </div>
       </section>
-      <div class="displayNone" id="result">
-        <div class="end__game displayNone" id="win">
+      <div class="container_results displayNone" id="result">
+        <div class="displayNone" id="win">
           <div class="results">
             <h2 class="result__h2">HAS GANADO</h2>
           
@@ -200,35 +200,38 @@
               <span id="timeFinalCPU">
               </span>
             </p>
-          <div>
+          <!-- <div>
             <button type="button" id="button__reload">¿Otra Partida?</button>
-          </div>
+          </div> -->
         </div>
         </div>
         <div class="results displayNone" id="lose">
           <h2 class="result__h2">HAS PERDIDO</h2>
           <p class="results__text">
             Tu tiempo : 
-            <span id="timeFinalUser" class="results__text">
+            <span id="timeFinalUser_lose" class="results__text">
             </span>
           </p>
           <p class="results__text">
             Tiempo CPU : 
-            <span id="timeFinalCPU">
+            <span id="timeFinalCPU_lose">
             </span>
           </p>
-          <div class="displayNone">
+          <!-- <div>
             <button type="button" id="button__reload">¿Otra Partida?</button>
-          </div>
+          </div> -->
         </div>
-        <!-- <div class="end__game displayNone" id="draw">
+        <div class="displayNone" id="draw">
           <div class="results">
             <h2 class="result__h2">HAS EMPATADO</h2>
-          <div>
+          <!-- <div>
             <button type="button" id="button__reload">¿Otra Partida?</button>
-          </div>
+          </div> -->
         </div>
-        </div> -->
+        </div>
+        <div>
+          <button type="button" id="button__reload">¿Otra Partida?</button>
+        </div>
       </div>
       </div>
     

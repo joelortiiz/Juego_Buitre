@@ -345,7 +345,9 @@ const shufflingCards = () => {
 }
 const playerLaunchCard = () => {
     if (winGame == false) {
-        if (CPUTurn == false && barajaPlayerFinal.length != 0) {
+        if (CPUTurn == false && barajaPlayerFinal.length != 1) {
+            console.log(Playercards)
+            console.log(barajaPlayerFinal.length)
             let cardBefore = tableCard.getAttribute("src")
             tableCard.setAttribute("src", "./assets/images/baraja/" + barajaPlayerFinal[0] + ".png")
             Playercards--;
@@ -355,11 +357,12 @@ const playerLaunchCard = () => {
             coincidenceCheck("Player", barajaPlayerFinal[0], cardBefore);
             CPUTurn = true;
             CPULaunchCard();
-            console.log(Playercards)
-            console.log(barajaPlayerFinal.length)
-        } else if (Playercards == 0 || barajaPlayerFinal.length == 0) {
+           
+        } else if (Playercards == 1 || barajaPlayerFinal.length == 1) {
+            game.style.display= "none";
+            draw.classList.remove("displayNone");
 
-            location.reload();
+          //  location.reload();
 
         }
     }
@@ -436,23 +439,32 @@ const detenerConteo = () => {
 
     let tiempoFin = new Date().getTime();
     let tiempoTranscurrido = tiempoFin - PlayerTime;
-
+debugger 
+    console.log(CPUTime)
     console.log("Conteo detenido. Tiempo transcurrido: " + tiempoTranscurrido + " milisegundos");
-    const timeFinalUser = document.getElementById("timeFinalUser");
-    const timeFinalCPU = document.getElementById("timeFinalCPU");
-
+   
+    container.style.justifyContent="start"
+    
     tiempoTranscurrido = tiempoTranscurrido / 1000
     CPUTime = CPUTime / 1000
     if (tiempoTranscurrido < CPUTime) {
+        const timeFinalUser = document.getElementById("timeFinalUser");
+        const timeFinalCPU = document.getElementById("timeFinalCPU");
+        
         console.log("gana usuario")
         win.classList.remove("displayNone");
         timeFinalUser.textContent = tiempoTranscurrido.toFixed(2)
         timeFinalCPU.textContent = CPUTime.toFixed(2)
     } else {
+        const timeFinalUser_lose = document.getElementById("timeFinalUser_lose");
+        const timeFinalCPU_lose = document.getElementById("timeFinalCPU_lose");
+    
         lose.classList.remove("displayNone");
         console.log("gana CPU")
-        timeFinalUser.textContent = tiempoTranscurrido.toFixed(2)
-        timeFinalCPU.textContent = CPUTime.toFixed(2)
+        timeFinalUser_lose.textContent = tiempoTranscurrido.toFixed(2)
+        timeFinalCPU_lose.textContent = CPUTime.toFixed(2)
+        console.log(tiempoTranscurrido.toFixed(2))
+        console.log(CPUTime.toFixed(2))
     }
 
 }

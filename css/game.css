@@ -92,6 +92,9 @@
 .end__game {
     display: flex;
 }
+.container_results {
+    text-align: center;
+}
 .results {
     display: flex;
     width: 800px;
