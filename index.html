@@ -58,10 +58,7 @@
                   id="username"
                 />
                 <button
-                  class="button__user"
-                  id="button_save_user"
-                  type="button"
-                >
+                  class="button__user" id="button_save_user" type="button" >
                   Guardar
                 </button>
               </div>
@@ -81,7 +78,12 @@
         <div class="container__difficulty" id="difficulty">
           <h3 class="h3" id="game__time">
             Escoge una dificultad
-            <img src="./assets/images/help.png" id="help" class="img__help" alt="interrogation"/>
+            <img
+              src="./assets/images/help.png"
+              id="help"
+              class="img__help"
+              alt="interrogation"
+            />
           </h3>
           <form class="game__difficulty">
             <div class="difficulty__option1">
@@ -106,75 +108,130 @@
           <button id="button__start" class="button2">Empezar</button>
         </div>
       </section>
-      <section class=" displayNone game" id="game">
-        <div class="game__container ">
+      <section class="displayNone game" id="game">
+        <div class="game__container">
           <div id="player">
             <div class="player__name">
-              Jugador:  
+              Jugador:
               <span class="player__name__span" id="player_name">Joel</span>
-              <img src="" alt="" class="game__avatars" id="player_avatar">
+              <img src="" alt="" class="game__avatars" id="player_avatar" />
             </div>
             <div class="player__name">
-              Cartas Restantes: 
+              Cartas Restantes:
               <span id="PlayerCountCards"></span>
             </div>
             <div>
-              <img src="./assets/images/baraja/atras.png" alt="" class="card" id="playerCard">
+              <img
+                src="./assets/images/baraja/atras.png"
+                alt=""
+                class="card"
+                id="playerCard"
+              />
             </div>
             <div id="buttons__player" class="container__button">
-              <button type="button" class="button__huntDefault" id="button__hunt">CAZAR</button>
-              <button type="button" class="button__giveCard" id="playerGiveCard">LANZAR</button>
+              <button
+                type="button"
+                class="button__huntDefault"
+                id="button__hunt"
+              >
+                CAZAR
+              </button>
+              <button
+                type="button"
+                class="button__giveCard"
+                id="playerGiveCard"
+              >
+                LANZAR
+              </button>
             </div>
-            </div>
+          </div>
           <div>
             <div class="table">
               <div>
-                <img src="./assets/images/baraja/atras.png" id="tableCard" class="table__img" alt="" srcset="">
+                <img
+                  src="./assets/images/baraja/atras.png"
+                  id="tableCard"
+                  class="table__img"
+                  alt=""
+                  srcset=""
+                />
               </div>
               <div class="table__div2 player__name">
-                Carta Anterior: 
-                  <img src="./assets/images/baraja/atras.png" class="table__imgSmall" alt="" srcset="" id="cardBefore">
+                Carta Anterior:
+                <img
+                  src="./assets/images/baraja/atras.png"
+                  class="table__imgSmall"
+                  alt=""
+                  srcset=""
+                  id="cardBefore"
+                />
               </div>
-             
-             </div>
-            
+            </div>
           </div>
           <div id="CPU">
             <div class="player__name">
-              Jugador:  
+              Jugador:
               <span class="player__name__span" id="player_name">CPU</span>
-              <img src="" alt="" class="game__avatars" id="CPU_avatar">
+              <img src="" alt="" class="game__avatars" id="CPU_avatar" />
             </div>
             <div>
-              <img src="./assets/images/baraja/atras.png" alt="" class="card">
+              <img src="./assets/images/baraja/atras.png" alt="" class="card" />
             </div>
-            <p class="player__name displayNone">
-                
-            </p>
-            <div id="buttons__player2" class="container__button displayNone">
+            <p class="player__name displayNone"></p>
+            <!-- <div id="buttons__player2" class="container__button displayNone">
               <button type="button" class="button__hunt">CAZAR</button>
               <button type="button" class="button__giveCard">LANZAR</button>
-              
-            </div>
-            
+            </div> -->
           </div>
         </div>
       </section>
-      <div class="displayNone player__name" id="win">
-       
-        <div class="end__game">
-          <p>
-            HAS GANADO
-          </p>
+      <div class="displayNone" id="result">
+        <div class="end__game displayNone" id="win">
+          <div class="results">
+            <h2 class="result__h2">HAS GANADO</h2>
+          
+            <p class="results__text">
+              Tu tiempo : 
+              <span id="timeFinalUser">
+              </span>
+            </p>
+            <p class="results__text">
+              Tiempo CPU : 
+              <span id="timeFinalCPU">
+              </span>
+            </p>
           <div>
             <button type="button" id="button__reload">¿Otra Partida?</button>
           </div>
         </div>
+        </div>
+        <div class="results displayNone" id="lose">
+          <h2 class="result__h2">HAS PERDIDO</h2>
+          <p class="results__text">
+            Tu tiempo : 
+            <span id="timeFinalUser" class="results__text">
+            </span>
+          </p>
+          <p class="results__text">
+            Tiempo CPU : 
+            <span id="timeFinalCPU">
+            </span>
+          </p>
+          <div class="displayNone">
+            <button type="button" id="button__reload">¿Otra Partida?</button>
+          </div>
+        </div>
+        <!-- <div class="end__game displayNone" id="draw">
+          <div class="results">
+            <h2 class="result__h2">HAS EMPATADO</h2>
+          <div>
+            <button type="button" id="button__reload">¿Otra Partida?</button>
+          </div>
+        </div>
+        </div> -->
       </div>
-      <div class="displayNone player__name end__game" id="win">
-        HABÉIS EMPATADO
       </div>
-    </div>
+    
     <script src="./js/script.js"></script>
   </body>
 </html>

@@ -142,8 +142,10 @@ const cardBefore = document.getElementById("cardBefore");
 const button__hunt = document.getElementById("button__hunt");
 const button_reload = document.getElementById('button__reload');
 const win = document.getElementById("win");
-const game = document.getElementById("game"); 
-
+const result = document.getElementById("result");
+const lose = document.getElementById("lose");
+const draw = document.getElementById("draw");
+const game = document.getElementById("game");
 let winGame = false;
 let CPUTurn = false;
 let PlayerTurn = false;
@@ -178,13 +180,14 @@ const start_game = () => {
     console.log(checkEdad)
     if (checkEdad == true) {
         settings.classList.remove("displayNone")
-        
+
         // settings.classList.add("animation__settings")
         start.style.display = "none";
         video.playbackRate = 0.8;
         settings.style.marginBottom = "0px";
         container.style.backgroundColor = "rgba(0, 128, 0, 0.97)";
         user_container.nextElementSibling.style.display = "none"
+        container.style.height = "820px";
         chargeAvatars()
     } else {
         button_play.style.backgroundColor = "red";
@@ -267,9 +270,10 @@ const chooseAvatar = (event) => {
 let startToPlay = false;
 const playGame = () => {
     if (avatarIsSet == true && usernameExists == true && difficultyTrue == true) {
+        container.style.height = "660px";
         settings.style.display = "none"
         game.classList.remove("displayNone")
-        container.style.justifyContent = "start"
+        container.style.justifyContent = "center"
         const playerName = document.getElementById("player_name")
         playerName.textContent = username.value
         const playerAvatar = document.getElementById("player_avatar")
@@ -290,9 +294,9 @@ const playGame = () => {
         console.log(avatarsCopy[random])
         const cpu_avatar = document.getElementById("CPU_avatar")
         cpu_avatar.setAttribute("src", "./assets/images/avatares/" + avatarsCopy[random])
-     //   shufflingCards();
+        //   shufflingCards();
         starTtoPlay = true
-        
+
         playerStart();
         CPUStart();
     } else {
@@ -323,16 +327,17 @@ const CPUStart = () => {
     containerCPU.lastElementChild.classList.remove("displayNone")
     if (difficult == true) {
         containerCPU.lastElementChild.textContent = "Hard Mode"
+        containerCPU.lastElementChild.classList.add("hard")
     } else {
         containerCPU.lastElementChild.textContent = "Easy Mode"
     }
 }
 const shufflingCards = () => {
-    for (let i = baraja1.length - 1; i > 0; i--) {
+    for (let i = baraja1.length -1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [baraja1[i], baraja1[j]] = [baraja1[j], baraja1[i]];
     }
-    for (let i = baraja2.length - 1; i > 0; i--) {
+    for (let i = baraja2.length -1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [baraja2[i], baraja2[j]] = [baraja2[j], baraja2[i]];
     }
@@ -340,7 +345,7 @@ const shufflingCards = () => {
 }
 const playerLaunchCard = () => {
     if (winGame == false) {
-        if (CPUTurn == false || Playercards != 0) {
+        if (CPUTurn == false && barajaPlayerFinal.length != 0) {
             let cardBefore = tableCard.getAttribute("src")
             tableCard.setAttribute("src", "./assets/images/baraja/" + barajaPlayerFinal[0] + ".png")
             Playercards--;
@@ -350,116 +355,108 @@ const playerLaunchCard = () => {
             coincidenceCheck("Player", barajaPlayerFinal[0], cardBefore);
             CPUTurn = true;
             CPULaunchCard();
+            console.log(Playercards)
+            console.log(barajaPlayerFinal.length)
+        } else if (Playercards == 0 || barajaPlayerFinal.length == 0) {
+
+            location.reload();
+
         }
-    } else {
-        showDraw();
     }
 }
 let flag = true;
 
 const CPULaunchCard = () => {
-  // Verificar si la ejecución está habilitada
-  if (flag) {
-    flag = false; // Deshabilitar futuras ejecuciones
-   let timeOut = setTimeout(() => {
-      if (winGame == false) {
-        if (CPUTurn == true || Playercards == 0) {
-          let cardBefore = tableCard.getAttribute("src");
-          tableCard.setAttribute("src", "./assets/images/baraja/" + barajaCPUFinal[0] + ".png");
-          barajaCPUFinal.shift();
-          CPUcards--;
-          
-        debugger
-          coincidenceCheck(timeOut, barajaCPUFinal[0], cardBefore);
-          CPUTurn = false;
-        }
-      } else {
-        showDraw();
-      }
+   if (flag) {
+        flag = false; // Deshabilitar futuras ejecuciones
+        let timeOut = setTimeout(() => {
+            if (winGame == false) {
+                if (CPUTurn == true || Playercards == 0) {
+                    let cardBefore = tableCard.getAttribute("src");
+                    tableCard.setAttribute("src", "./assets/images/baraja/" + barajaCPUFinal[0] + ".png");
+                    barajaCPUFinal.shift();
+                    CPUcards--;
+                    coincidenceCheck(timeOut, barajaCPUFinal[0], cardBefore);
+                    CPUTurn = false;
+                }
+            }
 
-      flag = true; // Habilitar la ejecución para la próxima llamada
-    }, 2000);
-  }
+            flag = true; // Habilitar la ejecución para la próxima llamada
+        }, 2000);
+    }
 };
 
-const showDraw=()=> {
-    
+const showDraw = () => {
+    game.style.display = "none";
 }
-// Llamada a la función CPULaunchCard
 
 
 
 const coincidenceCheck = (timeOut, carta, cardBeforeSave) => {
-    
-    if(cardBeforeSave != "./assets/images/baraja/atras.png")
-    debugger
-    cardBefore.setAttribute("src", cardBeforeSave)
+
+    if (cardBeforeSave != "./assets/images/baraja/atras.png")
+
+        cardBefore.setAttribute("src", cardBeforeSave)
     tableCard.setAttribute("src", "./assets/images/baraja/" + carta + ".png")
     imageOfTable = tableCard.getAttribute("src")
-    console.log(tableCard.getAttribute("src"))
+   // console.log(tableCard.getAttribute("src"))
     let nameCard = carta.substring(carta.lastIndexOf("/") + 1);
-    console.log(cardBeforeSave)
+   // console.log(cardBeforeSave)
     let numberCard = nameCard.substring(0, 1)
-    console.log(numberCard)
+  //  console.log(numberCard)
     let nameCardBefore = cardBeforeSave.substring(cardBeforeSave.lastIndexOf("/") + 1);
     let numberCardBefore = nameCardBefore.substring(0, 1)
-    console.log(numberCardBefore)
-    if(numberCard == numberCardBefore) {
+  //  console.log(numberCardBefore)
+    if (numberCard == numberCardBefore) {
         clearInterval(timeOut)
         winGame = true
         button__hunt.classList.add("button__hunt")
-        iniciarConteo();
-    } ;
-
-}
-const hunt = ()=> {
+        hunt();
+    };
 
 }
 
-// Función que se ejecuta cuando se cumple alguna condición
-const iniciarConteo = () => {
-    PlayerTime= new Date().getTime();
-  console.log("Comenzó el conteo");
- CPUTime = 1000 + Math.random() * 3000;
-  console.log("Tiempo de reacción de la CPU: " + CPUTime + " milisegundos");
-  button__hunt.addEventListener("click", detenerConteo)
-  
+const hunt = () => {
+    PlayerTime = new Date().getTime();
+    if (difficult == true) {
+        CPUTime = 800 + Math.random() * 400;
+    } else {
+        CPUTime = 1000 + Math.random() * 3000;
+    }
+    console.log("Tiempo de reacción de la CPU: " + CPUTime + " milisegundos");
+    button__hunt.addEventListener("click", detenerConteo)
+
+
+
 };
 
-// Función que se ejecuta cuando se pulsa otro botón para detener el conteo
 const detenerConteo = () => {
+    game.style.display = "none";
+    result.classList.remove("displayNone");
 
     let tiempoFin = new Date().getTime();
     let tiempoTranscurrido = tiempoFin - PlayerTime;
+
     console.log("Conteo detenido. Tiempo transcurrido: " + tiempoTranscurrido + " milisegundos");
-  } 
+    const timeFinalUser = document.getElementById("timeFinalUser");
+    const timeFinalCPU = document.getElementById("timeFinalCPU");
 
-
-// Llamada a iniciarConteo cuando se cumple alguna condición
-
-// Llamada a detenerConteo cuando se pulsa el segundo botón
-// Aquí podrías llamarlo desde un evento de click u otra acción
-// setTimeout(() => detenerConteo(), 3000); // Ejemplo de llamada después de 3 segundos
-
-const checkCards = (numberCard, numberCardBefore) => {
-    if (numberCard == numberCardBefore) {
-        
-            // Guardar el tiempo de inicio
-       //     clearTimeout(timeoutId);
-        //    tiempoInicio = new Date().getTime();
-            // Simular el reflejo aleatorio de la máquina entre 1-2 segundos
-            maquinaReflejo = setTimeout(
-            1000 + Math.random() * 1000); ;
-        button__hunt.setAttribute("class", "button__hunt")
-
-        game.style.display="none";
-        win.style.display="block";
-        container.style.justifyContent = "center"
-    } 
-    else {
-        winGame = false
+    tiempoTranscurrido = tiempoTranscurrido / 1000
+    CPUTime = CPUTime / 1000
+    if (tiempoTranscurrido < CPUTime) {
+        console.log("gana usuario")
+        win.classList.remove("displayNone");
+        timeFinalUser.textContent = tiempoTranscurrido.toFixed(2)
+        timeFinalCPU.textContent = CPUTime.toFixed(2)
+    } else {
+        lose.classList.remove("displayNone");
+        console.log("gana CPU")
+        timeFinalUser.textContent = tiempoTranscurrido.toFixed(2)
+        timeFinalCPU.textContent = CPUTime.toFixed(2)
     }
+
 }
+
 document.addEventListener("DOMContentLoaded", shufflingCards)
 check.addEventListener("change", check_checkbox)
 button_play.addEventListener("click", start_game)
@@ -469,7 +466,6 @@ avatarDiv.addEventListener("click", chooseAvatar)
 difficulty.addEventListener("click", choose__difficulty)
 button_start.addEventListener("click", playGame)
 playerGiveCardButton.addEventListener("click", playerLaunchCard)
-button_reload.addEventListener('click', function() {
-    // Define la función recargarPagina que utiliza location.reload() para recargar la página
+button_reload.addEventListener('click', function () {
     location.reload();
-  });
+});
