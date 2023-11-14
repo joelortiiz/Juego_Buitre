@@ -21,4 +21,9 @@ Controles:
 Si tienes ideas para mejorar, estoy dispuesto a escucharlas !
 ¡Diviértete y que gane el mejor jugador!
 
-       ¡🛡️ Disfrutalo 🛡️!
+¡🛡️ Disfrutalo 🛡️!
+
+
+       joelortiiz.github.io/Juego_Buitre/
+
+- Joel Ortiz García
