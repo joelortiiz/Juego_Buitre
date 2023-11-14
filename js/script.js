@@ -489,6 +489,7 @@ const stopCount = () => {
         lose.classList.remove("displayNone");
         lose.style.display = "flex";
         console.log("gana CPU")
+        //Same process
         timeFinalUser_lose.textContent = timeOfUser.toFixed(2)
         timeFinalCPU_lose.textContent = CPUTime.toFixed(2)
         console.log(timeOfUser.toFixed(2))
