@@ -23,6 +23,8 @@ Si tienes ideas para mejorar, estoy dispuesto a escucharlas !
 
 ¡🛡️ Disfrutalo 🛡️!
 
+(Si pruebas el juego desde el siguiente enlace, recomiendo usar el modo fácil ya que hay mucho lag y 
+si no juegas despacio, puede ser enrevesado y confuso)
 
        joelortiiz.github.io/Juego_Buitre/
 
