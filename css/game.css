@@ -109,7 +109,8 @@
     font-size: 1.5rem;
     color: white;
     background-color: green;
-    transition: all 0.8s ease;
+    transition: all 0.5s ease;
+    border: 2px solid black;
 }
 #button__reload:hover {
     margin-top: 2rem;
@@ -118,6 +119,7 @@
     font-size: 2rem;
     color: yellow;
     background-color: red;
+    border: 3px solid black;
 }
 .results__text {
     color: white;

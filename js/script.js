@@ -1,3 +1,4 @@
+// Card decks for Player and CPU
 let baraja1 = [
     "2_of_clubs",
     "2_of_diamonds",
@@ -108,7 +109,7 @@ let baraja2 = [
     "queen_of_hearts",
     "queen_of_spades"
 ]
-
+// Avatars for the game
 const avatars = [
     "cartas-de-poquer.png",
     "jugando-a-las-cartas.png",
@@ -116,6 +117,7 @@ const avatars = [
     "poker.png"
 ]
 
+// HTML elements for interaction
 const start = document.getElementById("start");
 const button_play = document.getElementById("button__play");
 const button_start = document.getElementById("button__start");
@@ -146,6 +148,8 @@ const result = document.getElementById("result");
 const lose = document.getElementById("lose");
 const draw = document.getElementById("draw");
 const game = document.getElementById("game");
+
+// Game variables
 let winGame = false;
 let CPUTurn = false;
 let PlayerTurn = false;
@@ -156,19 +160,20 @@ let PlayerTime;
 let timeEnd;
 let CPUTime;
 
+// Flag for age verification checkbox
 let checkEdad = true;
+
 const check_checkbox = () => {
     if (check.checked) {
-        console.log("check")
-
+        // console.log("check")
+        // Enable play button and set background color to green
         button_play.style.backgroundColor = "green";
-
         // button__play.disabled = false;
         checkEdad = true;
         warning.style.display = "none";
     } else {
-        console.log("no check")
-
+        // console.log("no check")
+        // Disable play button and set background color to red
         button_play.style.backgroundColor = "red";
         // button__play.disabled = true;
         warning.style.display = "block";
@@ -176,11 +181,13 @@ const check_checkbox = () => {
 
     }
 }
+
+// Function to start the game based on age verification
 const start_game = () => {
     console.log(checkEdad)
     if (checkEdad == true) {
+        // Show game settings
         settings.classList.remove("displayNone")
-
         // settings.classList.add("animation__settings")
         start.style.display = "none";
         video.playbackRate = 0.8;
@@ -188,6 +195,7 @@ const start_game = () => {
         container.style.backgroundColor = "rgba(0, 128, 0, 0.97)";
         user_container.nextElementSibling.style.display = "none"
         container.style.height = "820px";
+        //There we Call function to load avatars
         chargeAvatars()
     } else {
         button_play.style.backgroundColor = "red";
@@ -197,6 +205,7 @@ const start_game = () => {
 let difficultyTrue = false;
 let difficult = false;
 let eaasy = false;
+// Function to choose the difficulty level
 const choose__difficulty = (event) => {
     if (event.target.nodeName == "INPUT") {
         difficulty.children[1].classList.remove("error")
@@ -216,20 +225,26 @@ const choose__difficulty = (event) => {
 
     }
 }
-let timer = 3
-const countdown__start = () => {
-    countdown.textContent = timer
-    timer--;
-}
+// let timer = 3
+// const countdown__start = () => {
+//     countdown.textContent = timer
+//     timer--;
+// }
+
+// Function to display a help message
 const showHelp = () => {
     help_text.classList.toggle("displayNone")
     help_text.style.opacity = "1";
 }
+
+// Function to save the username
 let usernameExists = false;
 const saveUser = () => {
     if (username.value == "") {
-        console.log("vacio")
+        // console.log("vacio")
+        // If userlabel is empty we add red border
         username.style.border = "2px solid red";
+        // User name dont exist:
         usernameExists = false;
         user_layer.classList.add("displayNone")
     } else {
@@ -240,16 +255,19 @@ const saveUser = () => {
         user_layer.classList.remove("displayNone")
     }
 }
+// Function to load avatar images with random order
 const chargeAvatars = () => {
     for (let i = 0; i < 4; i++) {
         let div = document.createElement("DIV");
-        //     div.classList.add("")
+        // We add avatars into a div block to separate it
         avatarDiv.append(div);
+        //Generate random avatar position
         let random = Math.floor(Math.random() * avatars.length)
         let randomAvatar = avatars.splice(random, 1)[0];
         let avatar = document.createElement("IMG");
         avatar.src = "./assets/images/avatares/" + randomAvatar;
         avatar.className = "avatar";
+        //Add avatar into HTML
         div.appendChild(avatar)
     }
 }
@@ -267,6 +285,7 @@ const chooseAvatar = (event) => {
         avatarIsSet = true
     }
 }
+// For check that user meets the requirements
 let startToPlay = false;
 const playGame = () => {
     if (avatarIsSet == true && usernameExists == true && difficultyTrue == true) {
@@ -282,12 +301,14 @@ const playGame = () => {
         const player = document.getElementById("player")
         player.children[1].getAttribute("src")
         //   playerAvatar.setAttribute("src", user_container.lastElementChild.getAttribute("src"))
+        //There i create a copy of our avatar because there is a problem with the originak.
         const avatarsCopy = [
             "cartas-de-poquer.png",
             "jugando-a-las-cartas.png",
             "mano.png",
             "poker.png"
         ]
+
         let random = Math.floor(Math.random() * avatarsCopy.length)
         user_container.children[1].className = "displayNone"
         user_container.children[2].className = "displayNone"
@@ -316,6 +337,7 @@ let barajaPlayerFinal
 
 const PlayerCountCards = document.getElementById("PlayerCountCards")
 
+//Create the final Cars for player and CPU taking first 10 cards of array of cards random.
 const playerStart = () => {
     barajaPlayerFinal = baraja1.slice(0, 10)
     PlayerCountCards.textContent = Playercards
@@ -325,6 +347,7 @@ const CPUStart = () => {
     barajaCPUFinal = baraja2.slice(0, 10)
     const containerCPU = document.getElementById("CPU")
     containerCPU.lastElementChild.classList.remove("displayNone")
+    //There we save the difficulty choice of user.
     if (difficult == true) {
         containerCPU.lastElementChild.textContent = "Hard Mode"
         containerCPU.lastElementChild.classList.add("hard")
@@ -332,18 +355,20 @@ const CPUStart = () => {
         containerCPU.lastElementChild.textContent = "Easy Mode"
     }
 }
+
 const shufflingCards = () => {
-    for (let i = baraja1.length -1; i > 0; i--) {
+    for (let i = baraja1.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [baraja1[i], baraja1[j]] = [baraja1[j], baraja1[i]];
     }
-    for (let i = baraja2.length -1; i > 0; i--) {
+    for (let i = baraja2.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [baraja2[i], baraja2[j]] = [baraja2[j], baraja2[i]];
     }
 
 }
 const playerLaunchCard = () => {
+    //If any player win
     if (winGame == false) {
         if (CPUTurn == false && barajaPlayerFinal.length != 1) {
             console.log(Playercards)
@@ -356,24 +381,26 @@ const playerLaunchCard = () => {
             console.log(cardBefore)
             coincidenceCheck("Player", barajaPlayerFinal[0], cardBefore);
             CPUTurn = true;
+            //Call CPU to lunch a card.
             CPULaunchCard();
-           
+
         } else if (Playercards == 1 || barajaPlayerFinal.length == 1) {
-             game.style.display= "none";
-             result.classList.remove("displayNone");
+            game.style.display = "none";
+            result.classList.remove("displayNone");
 
-             draw.classList.remove("displayNone");
+            draw.classList.remove("displayNone");
 
-           // location.reload();
+            // location.reload();
 
         }
     }
 }
-let flag = true;
 
+let flag = true;
 const CPULaunchCard = () => {
-   if (flag) {
-        flag = false; // Deshabilitar futuras ejecuciones
+    if (flag) {
+        flag = false;
+        //Wait 2 seconds to continue
         let timeOut = setTimeout(() => {
             if (winGame == false) {
                 if (CPUTurn == true || Playercards == 0) {
@@ -381,12 +408,13 @@ const CPULaunchCard = () => {
                     tableCard.setAttribute("src", "./assets/images/baraja/" + barajaCPUFinal[0] + ".png");
                     barajaCPUFinal.shift();
                     CPUcards--;
+                    //Same as player but we send it the TimeOut to clear it.
                     coincidenceCheck(timeOut, barajaCPUFinal[0], cardBefore);
                     CPUTurn = false;
                 }
             }
 
-            flag = true; // Habilitar la ejecución para la próxima llamada
+            flag = true;
         }, 2000);
     }
 };
@@ -399,19 +427,19 @@ const showDraw = () => {
 
 const coincidenceCheck = (timeOut, carta, cardBeforeSave) => {
 
-    if (cardBeforeSave != "./assets/images/baraja/atras.png")
+    if (cardBeforeSave != "./assets/images/baraja/behind.png")
 
         cardBefore.setAttribute("src", cardBeforeSave)
     tableCard.setAttribute("src", "./assets/images/baraja/" + carta + ".png")
     imageOfTable = tableCard.getAttribute("src")
-   // console.log(tableCard.getAttribute("src"))
+    // console.log(tableCard.getAttribute("src"))
     let nameCard = carta.substring(carta.lastIndexOf("/") + 1);
-   // console.log(cardBeforeSave)
+    // console.log(cardBeforeSave)
     let numberCard = nameCard.substring(0, 1)
-  //  console.log(numberCard)
+    //  console.log(numberCard)
     let nameCardBefore = cardBeforeSave.substring(cardBeforeSave.lastIndexOf("/") + 1);
     let numberCardBefore = nameCardBefore.substring(0, 1)
-  //  console.log(numberCardBefore)
+    //  console.log(numberCardBefore)
     if (numberCard == numberCardBefore) {
         clearInterval(timeOut)
         winGame = true
@@ -428,47 +456,42 @@ const hunt = () => {
     } else {
         CPUTime = 1000 + Math.random() * 3000;
     }
-    console.log("Tiempo de reacción de la CPU: " + CPUTime + " milisegundos");
-    button__hunt.addEventListener("click", detenerConteo)
-
-
-
+    console.log("Tiempo reacción de la CPU: " + CPUTime + " milisegundos");
+    button__hunt.addEventListener("click", stopCount)
 };
 
-const detenerConteo = () => {
+const stopCount = () => {
     game.style.display = "none";
     result.classList.remove("displayNone");
-
     let tiempoFin = new Date().getTime();
-    let tiempoTranscurrido = tiempoFin - PlayerTime;
-debugger 
+    let timeOfUser = tiempoFin - PlayerTime;
+    //debugger
     console.log(CPUTime)
-    console.log("Conteo detenido. Tiempo transcurrido: " + tiempoTranscurrido + " milisegundos");
-   
-  //  container.style.justifyContent="start"
-    
-    tiempoTranscurrido = tiempoTranscurrido / 1000
+    console.log("Count detenido. Tiempo: " + timeOfUser + " milisegundos");
+    //  container.style.justifyContent="start"
+    timeOfUser = timeOfUser / 1000
     CPUTime = CPUTime / 1000
-    if (tiempoTranscurrido < CPUTime) {
+    if (timeOfUser < CPUTime) {
+        //We write the time reaction of both
         const timeFinalUser = document.getElementById("timeFinalUser");
         const timeFinalCPU = document.getElementById("timeFinalCPU");
-        
+
         console.log("gana usuario")
         win.classList.remove("displayNone");
-        
-        win.style.display="flex";
-        timeFinalUser.textContent = tiempoTranscurrido.toFixed(2)
+
+        win.style.display = "flex";
+        //We take only first 2 decimals of the numbers
+        timeFinalUser.textContent = timeOfUser.toFixed(2)
         timeFinalCPU.textContent = CPUTime.toFixed(2)
     } else {
         const timeFinalUser_lose = document.getElementById("timeFinalUser_lose");
         const timeFinalCPU_lose = document.getElementById("timeFinalCPU_lose");
-    
         lose.classList.remove("displayNone");
-        lose.style.display="flex";
+        lose.style.display = "flex";
         console.log("gana CPU")
-        timeFinalUser_lose.textContent = tiempoTranscurrido.toFixed(2)
+        timeFinalUser_lose.textContent = timeOfUser.toFixed(2)
         timeFinalCPU_lose.textContent = CPUTime.toFixed(2)
-        console.log(tiempoTranscurrido.toFixed(2))
+        console.log(timeOfUser.toFixed(2))
         console.log(CPUTime.toFixed(2))
     }
 
